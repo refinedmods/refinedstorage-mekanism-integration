@@ -11,5 +11,4 @@ jobs:
     uses: refinedmods/refinedarchitect/.github/workflows/build.yml@v0.12.1
     with:
       mutation-testing: false
-      sonarqube: false
     secrets: inherit

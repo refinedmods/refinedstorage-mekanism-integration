@@ -34,3 +34,4 @@ dependencies {
 }
 
 enablePublishing()
+enableSonarQube("refinedmods_refinedstorage2-mekanism-integration")
