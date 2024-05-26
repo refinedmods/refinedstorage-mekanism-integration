@@ -1,0 +1,23 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+issueTrackerURL = "https://github.com/refinedmods/refinedstorage2-mekanism-integration"
+license = "MIT"
+[[mods]]
+modId = "refinedstorage2_mekanism_integration"
+version = "${version}"
+displayName = "Refined Storage 2 - Mekanism Integration"
+displayURL = "https://github.com/refinedmods/refinedstorage2-mekanism-integration"
+authors = "Refined Mods"
+description = '''
+Mekanism integration for Refined Storage 2.
+'''
+[[dependencies.refinedstorage2_mekanism_integration]]
+modId = "refinedstorage2"
+type = "required"
+versionRange = "2.0.0-milestone.3.6"
+side = "BOTH"
+[[dependencies.refinedstorage2_mekanism_integration]]
+modId = "mekanism"
+type = "required"
+versionRange = "[10.5,11-)"
+side = "BOTH"

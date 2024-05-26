@@ -1,0 +1,36 @@
+apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.12.1/helper.gradle"
+
+group = 'com.refinedmods.refinedstorage2'
+
+forgeProject("refinedstorage2_mekanism_integration")
+
+archivesBaseName = 'refinedstorage2-mekanism-integration'
+
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/refinedmods/refinedstorage2")
+        credentials {
+            username = "anything"
+            password = "\u0067hp_oGjcDFCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
+        }
+    }
+    maven {
+        name = "Modmaven"
+        url = uri("https://modmaven.dev/")
+        content {
+            includeGroup("mekanism")
+        }
+    }
+}
+
+dependencies {
+    implementation("com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorage2Version}") {
+        transitive = false
+    }
+    compileOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api")
+    runtimeOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:all") {
+        exclude(group: "com.blamejared.crafttweaker")
+    }
+}
+
+enablePublishing()
