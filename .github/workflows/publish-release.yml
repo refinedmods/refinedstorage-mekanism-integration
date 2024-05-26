@@ -12,4 +12,3 @@ jobs:
     with:
       project-name: 'Refined Storage 2 - Mekanism Integration'
       mutation-testing: false
-      sonarqube: false
