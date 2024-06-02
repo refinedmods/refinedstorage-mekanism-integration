@@ -1,10 +1,10 @@
 apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.12.1/helper.gradle"
 
-group = 'com.refinedmods.refinedstorage2'
+group = 'com.refinedmods.refinedstorage'
 
-forgeProject("refinedstorage2_mekanism_integration")
+forgeProject("refinedstorage_mekanism_integration")
 
-archivesBaseName = 'refinedstorage2-mekanism-integration'
+archivesBaseName = 'refinedstorage-mekanism-integration'
 
 repositories {
     maven {
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorage2Version}") {
+    implementation("com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorageVersion}") {
         transitive = false
     }
     compileOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api")
@@ -34,4 +34,4 @@ dependencies {
 }
 
 enablePublishing()
-enableSonarQube("refinedmods_refinedstorage2-mekanism-integration")
+enableSonarQube("refinedmods_refinedstorage-mekanism-integration")

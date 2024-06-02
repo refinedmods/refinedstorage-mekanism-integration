@@ -10,5 +10,5 @@ jobs:
     uses: refinedmods/refinedarchitect/.github/workflows/publish-release.yml@v0.12.1
     secrets: inherit
     with:
-      project-name: 'Refined Storage 2 - Mekanism Integration'
+      project-name: 'Refined Storage - Mekanism Integration'
       mutation-testing: false
