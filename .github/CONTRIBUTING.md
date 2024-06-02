@@ -4,6 +4,20 @@ When contributing to this repository, please first discuss the change you wish t
 [GitHub issues](https://github.com/refinedmods/refinedarchitect-template/issues), [Discord](https://discordapp.com/invite/VYzsydb),
 or any other method with the owners of this repository before making a change.
 
+## Quickstart
+
+These are the most important things to know before contributing (also explained in more detail later in this document):
+
+- Commit messages must adhere to [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+- Branch names must be formatted correctly. The format is `{category}/GH-{issue number}/{lowercase-description}`.
+  Category must match a
+  category [used in our Commitlint config](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum).
+- We use [Checkstyle](https://checkstyle.sourceforge.io/) in our build workflow to validate coding style. It is
+  recommended to import the [config/checkstyle/checkstyle.xml](../config/checkstyle/checkstyle.xml) or [config/intellij-code-style.xml](../config/intellij-code-style.xml) file into your
+  IDE, so that formatting rules are respected.
+- Branches are kept up to date by rebasing, not by merging.
+- For non-technical changes, adding a changelog entry is required.
+
 ## Pull requests
 
 - Keep your pull request (PR) as small as possible, this makes reviewing easier.
@@ -46,26 +60,6 @@ Valid examples are:
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### Version metadata
-
-The code doesn't contain version metadata: `build.gradle` specifies a version of `0.0.0` (via Refined Architect).
-The versioning information is entirely contained in Git by using tags.
-
-Per [Semantic Versioning](https://semver.org/spec/v2.0.0.html), the version number being released depends on the changes
-in that release. We usually can't predict those
-changes at the start of a release cycle, so we can't bump the version at the start of a release cycle. That means that
-the version number being released is determined at release time.
-
-Because the version number is determined at release time, we can't store any versioning metadata in the
-code (`build.gradle`). If we did, `build.gradle` would have the version number of the latest released version during the
-release cycle of the new version, which isn't correct.
-
-### Dealing with Minecraft
-
-Whenever we port to a new Minecraft version, at least the minor version should be incremented.
-
-This is needed so that we can still support older Minecraft versions without the version numbers conflicting.
-
 ## Changelog
 
 The changelog is kept in `CHANGELOG.md`.
@@ -95,7 +89,7 @@ from [API Guardian](https://github.com/apiguardian-team/apiguardian).
 
 We use [Checkstyle](https://checkstyle.sourceforge.io/) in our build workflow to validate coding style.
 
-It is recommended to import the [config/checkstyle/checkstyle.xml](../config/checkstyle/checkstyle.xml) file into your
+It is recommended to import the [config/checkstyle/checkstyle.xml](../config/checkstyle/checkstyle.xml) or [config/intellij-code-style.xml](../config/intellij-code-style.xml) file into your
 IDE, so that formatting rules are respected.
 
 Moreover, the [CheckStyle-IDEA plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) can be used to check
