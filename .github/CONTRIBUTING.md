@@ -1,7 +1,7 @@
 # Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via
-[GitHub issues](https://github.com/refinedmods/refinedarchitect-template/issues), [Discord](https://discordapp.com/invite/VYzsydb),
+[GitHub issues](https://github.com/refinedmods/refinedstorage-mekanism-integration/issues), [Discord](https://discordapp.com/invite/VYzsydb),
 or any other method with the owners of this repository before making a change.
 
 ## Quickstart
@@ -13,7 +13,8 @@ These are the most important things to know before contributing (also explained 
   Category must match a
   category [used in our Commitlint config](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum).
 - We use [Checkstyle](https://checkstyle.sourceforge.io/) in our build workflow to validate coding style. It is
-  recommended to import the [config/checkstyle/checkstyle.xml](../config/checkstyle/checkstyle.xml) or [config/intellij-code-style.xml](../config/intellij-code-style.xml) file into your
+  recommended to import the [config/checkstyle/checkstyle.xml](../config/checkstyle/checkstyle.xml)
+  or [config/intellij-code-style.xml](../config/intellij-code-style.xml) file into your
   IDE, so that formatting rules are respected.
 - Branches are kept up to date by rebasing, not by merging.
 - For non-technical changes, adding a changelog entry is required.
@@ -89,7 +90,8 @@ from [API Guardian](https://github.com/apiguardian-team/apiguardian).
 
 We use [Checkstyle](https://checkstyle.sourceforge.io/) in our build workflow to validate coding style.
 
-It is recommended to import the [config/checkstyle/checkstyle.xml](../config/checkstyle/checkstyle.xml) or [config/intellij-code-style.xml](../config/intellij-code-style.xml) file into your
+It is recommended to import the [config/checkstyle/checkstyle.xml](../config/checkstyle/checkstyle.xml)
+or [config/intellij-code-style.xml](../config/intellij-code-style.xml) file into your
 IDE, so that formatting rules are respected.
 
 Moreover, the [CheckStyle-IDEA plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) can be used to check
@@ -212,10 +214,11 @@ The workflow takes care of the following:
 - Extracting the version number from the release or hotfix branch name that is merged in the PR.
 - Extracting the changelog entry for this version number.
 - Running a build.
-- Publishing on [GitHub packages](https://github.com/refinedmods/refinedarchitect-template/packages) and
+- Publishing on [GitHub packages](https://github.com/refinedmods/refinedstorage-mekanism-integration/packages) and
   CreeperHost Maven.
-- Publishing Javadoc on [GitHub pages](https://github.com/refinedmods/refinedarchitect-template/tree/gh-pages).
-- Deploying on [GitHub releases](https://github.com/refinedmods/refinedarchitect-template/releases).
+- Publishing Javadoc
+  on [GitHub pages](https://github.com/refinedmods/refinedstorage-mekanism-integration/tree/gh-pages).
+- Deploying on [GitHub releases](https://github.com/refinedmods/refinedstorage-mekanism-integration/releases).
 - Announcing the release on Discord and Twitter.
 - Creating a PR that merges `main` back into `develop` to get the changes to `CHANGELOG.md` and `build.gradle`
   into `develop` from the draft release workflow.
