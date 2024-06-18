@@ -1,4 +1,8 @@
-apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.12.1/helper.gradle"
+plugins {
+    id 'java-library'
+}
+
+apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.13.4/helper.gradle"
 
 group = 'com.refinedmods.refinedstorage'
 
@@ -24,10 +28,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorageVersion}") {
-        transitive = false
-    }
-    compileOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api")
+    api "com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorageVersion}"
+    compileOnlyApi "mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api"
     runtimeOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:all") {
         exclude(group: "com.blamejared.crafttweaker")
     }

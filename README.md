@@ -2,7 +2,7 @@
 
 ## About
 
-Mekanism integration for [Refined Storage](https://github.com/refinedmods/refinedstorage2).
+[Mekanism](https://github.com/mekanism/Mekanism) integration for [Refined Storage](https://github.com/refinedmods/refinedstorage2).
 
 ## Links
 
