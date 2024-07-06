@@ -2,6 +2,6 @@
 @FieldsAndMethodsAreNonnullByDefault
 package com.refinedmods.refinedstorage.mekanism;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import com.refinedmods.refinedstorage.api.core.FieldsAndMethodsAreNonnullByDefault;
 
-import com.refinedmods.refinedstorage2.api.core.FieldsAndMethodsAreNonnullByDefault;
+import javax.annotation.ParametersAreNonnullByDefault;

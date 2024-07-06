@@ -15,4 +15,4 @@ out/
 /bin/
 logs/
 .cache/
-runs/
+run/

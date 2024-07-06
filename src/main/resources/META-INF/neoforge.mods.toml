@@ -6,18 +6,18 @@ license = "MIT"
 modId = "refinedstorage_mekanism_integration"
 version = "${version}"
 displayName = "Refined Storage - Mekanism Integration"
-displayURL = "https://github.com/refinedmods/refinedstorage-mekanism-integration"
+displayURL = "https://refinedmods.com/refined-storage"
 authors = "Refined Mods"
 description = '''
 Mekanism integration for Refined Storage.
 '''
 [[dependencies.refinedstorage_mekanism_integration]]
-modId = "refinedstorage2"
+modId = "refinedstorage"
 type = "required"
-versionRange = "2.0.0-milestone.3.13"
+versionRange = "2.0.0-milestone.4.2"
 side = "BOTH"
 [[dependencies.refinedstorage_mekanism_integration]]
 modId = "mekanism"
 type = "required"
-versionRange = "[10.5,11-)"
+versionRange = "[10.6,11-)"
 side = "BOTH"

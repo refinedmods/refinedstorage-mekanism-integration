@@ -1,6 +1,7 @@
 package com.refinedmods.refinedstorage.mekanism;
 
-import com.refinedmods.refinedstorage2.platform.common.util.IdentifierUtil;
+import com.refinedmods.refinedstorage.platform.common.util.IdentifierUtil;
+
 import mekanism.api.MekanismAPI;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;

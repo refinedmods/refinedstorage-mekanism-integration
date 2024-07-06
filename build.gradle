@@ -2,11 +2,11 @@ plugins {
     id 'java-library'
 }
 
-apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.13.4/helper.gradle"
+apply from: "https://raw.githubusercontent.com/refinedmods/refinedarchitect/v0.15.3/helper.gradle"
 
 group = 'com.refinedmods.refinedstorage'
 
-forgeProject("refinedstorage_mekanism_integration")
+neoForgeProject("refinedstorage_mekanism_integration")
 
 archivesBaseName = 'refinedstorage-mekanism-integration'
 
@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    api "com.refinedmods.refinedstorage2:refinedstorage2-platform-forge:${refinedstorageVersion}"
+    api "com.refinedmods.refinedstorage:refinedstorage-platform-neoforge:${refinedstorageVersion}"
     compileOnlyApi "mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api"
     runtimeOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:all") {
         exclude(group: "com.blamejared.crafttweaker")
