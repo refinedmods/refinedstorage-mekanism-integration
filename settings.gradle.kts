@@ -19,6 +19,7 @@ pluginManagement {
         }
     }
     plugins {
-        id("refinedarchitect.neoforge").version("0.16.3")
+        id("refinedarchitect.root").version("0.16.4")
+        id("refinedarchitect.neoforge").version("0.16.4")
     }
 }
