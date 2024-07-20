@@ -20,3 +20,5 @@ pluginManagement {
         id("refinedarchitect.neoforge").version(refinedarchitectVersion)
     }
 }
+
+rootProject.name = "refinedstorage-mekanism-integration"
