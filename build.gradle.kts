@@ -40,7 +40,7 @@ val minecraftVersion: String by project
 val mekanismVersion: String by project
 
 dependencies {
-    api("com.refinedmods.refinedstorage:refinedstorage-platform-neoforge:${refinedstorageVersion}")
+    api("com.refinedmods.refinedstorage:refinedstorage-neoforge:${refinedstorageVersion}")
     compileOnlyApi("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api")
     runtimeOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:all") {
         exclude(group = "com.blamejared.crafttweaker")
