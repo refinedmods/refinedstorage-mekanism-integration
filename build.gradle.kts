@@ -18,6 +18,10 @@ repositories {
             includeGroup("mekanism")
         }
     }
+    maven {
+        name = "JEI"
+        url = uri("https://maven.blamejared.com/")
+    }
 }
 
 refinedarchitect {
@@ -38,6 +42,7 @@ base {
 val refinedstorageVersion: String by project
 val minecraftVersion: String by project
 val mekanismVersion: String by project
+val jeiVersion: String by project
 
 dependencies {
     api("com.refinedmods.refinedstorage:refinedstorage-neoforge:${refinedstorageVersion}")
@@ -45,5 +50,9 @@ dependencies {
     runtimeOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:all") {
         exclude(group = "com.blamejared.crafttweaker")
     }
+    runtimeOnly("mezz.jei:jei-${minecraftVersion}-neoforge:${jeiVersion}")
+    compileOnlyApi("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}")
+    testCompileOnly("mezz.jei:jei-${minecraftVersion}-common:${jeiVersion}")
+    compileOnlyApi("mezz.jei:jei-${minecraftVersion}-neoforge-api:${jeiVersion}")
 }
 

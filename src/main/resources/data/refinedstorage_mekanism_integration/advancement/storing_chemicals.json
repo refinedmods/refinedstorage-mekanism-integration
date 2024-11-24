@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "refinedstorage_mekanism_integration:64b_chemical_storage_disk"
+    },
+    "title": {
+      "translate": "advancements.refinedstorage_mekanism_integration.storing_chemicals"
+    },
+    "description": {
+      "translate": "advancements.refinedstorage_mekanism_integration.storing_chemicals.description"
+    }
+  },
+  "parent": "refinedstorage:drives",
+  "criteria": {
+    "chemical_storage_disk_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#refinedstorage_mekanism_integration:chemical_storage_disks"
+          }
+        ]
+      }
+    }
+  }
+}

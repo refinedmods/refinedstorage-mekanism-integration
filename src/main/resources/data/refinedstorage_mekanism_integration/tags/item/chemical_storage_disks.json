@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "refinedstorage_mekanism_integration:64b_chemical_storage_disk",
+    "refinedstorage_mekanism_integration:256b_chemical_storage_disk",
+    "refinedstorage_mekanism_integration:1024b_chemical_storage_disk",
+    "refinedstorage_mekanism_integration:8192b_chemical_storage_disk"
+  ]
+}

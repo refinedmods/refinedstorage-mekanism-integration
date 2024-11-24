@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "refinedstorage_mekanism_integration:item/64b_chemical_storage_disk"
+  }
+}
