@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "refinedstorage:storage_housing"
+    },
+    {
+      "item": "refinedstorage_mekanism_integration:8192b_chemical_storage_part"
+    }
+  ],
+  "result": {
+    "id": "refinedstorage_mekanism_integration:8192b_chemical_storage_disk"
+  }
+}

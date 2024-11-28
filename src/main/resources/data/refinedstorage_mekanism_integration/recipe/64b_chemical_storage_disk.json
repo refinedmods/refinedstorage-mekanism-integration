@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "RPR",
+    "EEE"
+  ],
+  "key": {
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "P": {
+      "item": "refinedstorage_mekanism_integration:64b_chemical_storage_part"
+    },
+    "E": {
+      "item": "mekanism:ingot_osmium"
+    }
+  },
+  "result": {
+    "id": "refinedstorage_mekanism_integration:64b_chemical_storage_disk"
+  }
+}

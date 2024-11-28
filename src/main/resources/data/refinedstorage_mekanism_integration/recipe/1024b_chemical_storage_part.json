@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PEP",
+    "SRS",
+    "PSP"
+  ],
+  "key": {
+    "P": {
+      "item": "refinedstorage:improved_processor"
+    },
+    "E": {
+      "item": "mekanism:ingot_osmium"
+    },
+    "S": {
+      "item": "refinedstorage_mekanism_integration:256b_chemical_storage_part"
+    },
+    "R": {
+      "item": "mekanism:alloy_reinforced"
+    }
+  },
+  "result": {
+    "id": "refinedstorage_mekanism_integration:1024b_chemical_storage_part"
+  }
+}
