@@ -1,0 +1,16 @@
+{
+  "misc.refinedstorage_mekanism_integration.resource_type.chemical": "Chemical",
+  "item.refinedstorage_mekanism_integration.64b_chemical_storage_part": "64B Chemical Storage Part",
+  "item.refinedstorage_mekanism_integration.256b_chemical_storage_part": "256B Chemical Storage Part",
+  "item.refinedstorage_mekanism_integration.1024b_chemical_storage_part": "1024B Chemical Storage Part",
+  "item.refinedstorage_mekanism_integration.8192b_chemical_storage_part": "8192B Chemical Storage Part",
+  "item.refinedstorage_mekanism_integration.64b_chemical_storage_disk": "64B Chemical Storage Disk",
+  "item.refinedstorage_mekanism_integration.256b_chemical_storage_disk": "256B Chemical Storage Disk",
+  "item.refinedstorage_mekanism_integration.1024b_chemical_storage_disk": "1024B Chemical Storage Disk",
+  "item.refinedstorage_mekanism_integration.8192b_chemical_storage_disk": "8192B Chemical Storage Disk",
+  "item.refinedstorage_mekanism_integration.creative_chemical_storage_disk": "Creative Chemical Storage Disk",
+  "item.refinedstorage_mekanism_integration.chemical_storage_disk.help": "Stores %s buckets.",
+  "item.refinedstorage_mekanism_integration.creative_chemical_storage_disk.help": "Stores an infinite amount of buckets.",
+  "advancements.refinedstorage_mekanism_integration.storing_chemicals": "Storing chemicals",
+  "advancements.refinedstorage_mekanism_integration.storing_chemicals.description": "Craft a Chemical Storage Disk and put it in your Disk Drive"
+}
