@@ -4,6 +4,7 @@ import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipe;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipeSerializer;
 import com.refinedmods.refinedstorage.common.support.SimpleItem;
+import com.refinedmods.refinedstorage.mekanism.exporter.ChemicalExporterTransferStrategyFactory;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridExtractionStrategy;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionStrategy;
 import com.refinedmods.refinedstorage.mekanism.importer.ChemicalImporterTransferStrategyFactory;
@@ -14,6 +15,7 @@ import com.refinedmods.refinedstorage.mekanism.storagemonitor.ChemicalStorageMon
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -29,6 +31,8 @@ import static com.refinedmods.refinedstorage.mekanism.MekanismIntegrationIdentif
 
 @Mod(MekanismIntegrationIdentifierUtil.MOD_ID)
 public final class ModInitializer {
+    private static final ResourceLocation CHEMICAL_ID = createMekanismIntegrationIdentifier("chemical");
+
     public ModInitializer(final IEventBus eventBus) {
         if (FMLEnvironment.dist == Dist.CLIENT) {
             eventBus.addListener(ClientModInitializer::onClientSetup);
@@ -74,22 +78,20 @@ public final class ModInitializer {
     }
 
     private void setup(final FMLCommonSetupEvent e) {
-        RefinedStorageApi.INSTANCE.getResourceTypeRegistry().register(
-            createMekanismIntegrationIdentifier("chemical"),
-            ChemicalResourceType.INSTANCE
-        );
+        RefinedStorageApi.INSTANCE.getResourceTypeRegistry().register(CHEMICAL_ID, ChemicalResourceType.INSTANCE);
         RefinedStorageApi.INSTANCE.getAlternativeResourceFactories().add(new ChemicalResourceFactory());
-        RefinedStorageApi.INSTANCE.getStorageTypeRegistry().register(
-            createMekanismIntegrationIdentifier("chemical"),
-            ChemicalResourceType.STORAGE_TYPE
-        );
+        RefinedStorageApi.INSTANCE.getStorageTypeRegistry().register(CHEMICAL_ID, ChemicalResourceType.STORAGE_TYPE);
         RefinedStorageApi.INSTANCE.addGridInsertionStrategyFactory(ChemicalGridInsertionStrategy::new);
         RefinedStorageApi.INSTANCE.addGridExtractionStrategyFactory(ChemicalGridExtractionStrategy::new);
         RefinedStorageApi.INSTANCE.addStorageMonitorInsertionStrategy(new ChemicalStorageMonitorInsertionStrategy());
         RefinedStorageApi.INSTANCE.addResourceContainerInsertStrategy(new ChemicalResourceContainerInsertStrategy());
         RefinedStorageApi.INSTANCE.getImporterTransferStrategyRegistry().register(
-            createMekanismIntegrationIdentifier("chemical"),
+            CHEMICAL_ID,
             new ChemicalImporterTransferStrategyFactory()
+        );
+        RefinedStorageApi.INSTANCE.getExporterTransferStrategyRegistry().register(
+            CHEMICAL_ID,
+            new ChemicalExporterTransferStrategyFactory()
         );
     }
 
