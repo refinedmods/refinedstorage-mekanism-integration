@@ -1,6 +1,6 @@
 package com.refinedmods.refinedstorage.mekanism;
 
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageVariant;
+import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageVariant;
 
 import java.util.EnumMap;
 import java.util.Map;

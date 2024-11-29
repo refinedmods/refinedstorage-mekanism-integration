@@ -1,10 +1,8 @@
 package com.refinedmods.refinedstorage.mekanism;
 
 import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalGridInsertionHint;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResource;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResourceRendering;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageVariant;
+import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionHint;
+import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageVariant;
 
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;

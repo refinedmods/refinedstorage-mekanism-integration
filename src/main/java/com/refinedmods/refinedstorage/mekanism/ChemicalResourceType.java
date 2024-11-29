@@ -1,4 +1,4 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism;
 
 import com.refinedmods.refinedstorage.api.grid.operations.GridOperations;
 import com.refinedmods.refinedstorage.api.grid.operations.GridOperationsImpl;
@@ -11,26 +11,24 @@ import com.refinedmods.refinedstorage.common.api.storage.StorageType;
 import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
 import com.refinedmods.refinedstorage.common.api.support.resource.ResourceType;
 import com.refinedmods.refinedstorage.common.storage.SameTypeStorageType;
+import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridResourceFactory;
 
 import java.util.Optional;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import mekanism.api.MekanismAPI;
 import mekanism.api.chemical.Chemical;
-import mekanism.api.chemical.IChemicalHandler;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.capabilities.ItemCapability;
 
 import static com.refinedmods.refinedstorage.mekanism.MekanismIntegrationIdentifierUtil.createMekanismIntegrationIdentifier;
 import static com.refinedmods.refinedstorage.mekanism.MekanismIntegrationIdentifierUtil.createMekanismIntegrationTranslation;
 
-public class ChemicalResourceType implements ResourceType {
-    public static final ChemicalResourceType INSTANCE = new ChemicalResourceType();
+public enum ChemicalResourceType implements ResourceType {
+    INSTANCE;
 
     public static final MapCodec<ChemicalResource> MAP_CODEC = RecordCodecBuilder.mapCodec(ins -> ins.group(
         Chemical.CODEC.fieldOf("chemical").forGetter(ChemicalResource::chemical)
@@ -39,10 +37,6 @@ public class ChemicalResourceType implements ResourceType {
     public static final StreamCodec<RegistryFriendlyByteBuf, ChemicalResource> STREAM_CODEC = StreamCodec.composite(
         Chemical.STREAM_CODEC, ChemicalResource::chemical,
         ChemicalResource::new
-    );
-    public static final ItemCapability<IChemicalHandler, Void> ITEM_CAPABILITY = ItemCapability.createVoid(
-        ResourceLocation.fromNamespaceAndPath(MekanismAPI.MEKANISM_MODID, "chemical_handler"),
-        IChemicalHandler.class
     );
     public static final StorageType STORAGE_TYPE = new SameTypeStorageType<>(
         CODEC,
@@ -58,9 +52,6 @@ public class ChemicalResourceType implements ResourceType {
         "resource_type.chemical"
     );
     private static final ResourceLocation SPRITE = createMekanismIntegrationIdentifier("chemical_resource_type");
-
-    private ChemicalResourceType() {
-    }
 
     @Override
     @SuppressWarnings({"unchecked", "rawtypes"})

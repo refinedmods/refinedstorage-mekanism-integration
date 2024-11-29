@@ -4,14 +4,12 @@ import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipe;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipeSerializer;
 import com.refinedmods.refinedstorage.common.support.SimpleItem;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalGridExtractionStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalGridInsertionStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResourceContainerInsertStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResourceFactory;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResourceType;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageDiskItem;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageMonitorInsertionStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageVariant;
+import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridExtractionStrategy;
+import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionStrategy;
+import com.refinedmods.refinedstorage.mekanism.importer.ChemicalImporterTransferStrategyFactory;
+import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageDiskItem;
+import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageVariant;
+import com.refinedmods.refinedstorage.mekanism.storagemonitor.ChemicalStorageMonitorInsertionStrategy;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -89,6 +87,10 @@ public final class ModInitializer {
         RefinedStorageApi.INSTANCE.addGridExtractionStrategyFactory(ChemicalGridExtractionStrategy::new);
         RefinedStorageApi.INSTANCE.addStorageMonitorInsertionStrategy(new ChemicalStorageMonitorInsertionStrategy());
         RefinedStorageApi.INSTANCE.addResourceContainerInsertStrategy(new ChemicalResourceContainerInsertStrategy());
+        RefinedStorageApi.INSTANCE.getImporterTransferStrategyRegistry().register(
+            createMekanismIntegrationIdentifier("chemical"),
+            new ChemicalImporterTransferStrategyFactory()
+        );
     }
 
     private void registerCreativeModeTabListener(final BuildCreativeModeTabContentsEvent e) {

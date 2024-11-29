@@ -1,4 +1,4 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.storage;
 
 import com.refinedmods.refinedstorage.common.api.storage.AbstractStorageContainerItem;
 import com.refinedmods.refinedstorage.common.api.storage.SerializableStorage;
@@ -7,6 +7,8 @@ import com.refinedmods.refinedstorage.common.api.storage.StorageRepository;
 import com.refinedmods.refinedstorage.common.api.support.HelpTooltipComponent;
 import com.refinedmods.refinedstorage.common.storage.StorageVariant;
 import com.refinedmods.refinedstorage.common.storage.UpgradeableStorageContainer;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResourceRendering;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResourceType;
 import com.refinedmods.refinedstorage.mekanism.Items;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.storagemonitor;
 
 import com.refinedmods.refinedstorage.api.core.Action;
 import com.refinedmods.refinedstorage.api.network.Network;
@@ -7,6 +7,8 @@ import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 import com.refinedmods.refinedstorage.api.storage.Actor;
 import com.refinedmods.refinedstorage.api.storage.root.RootStorage;
 import com.refinedmods.refinedstorage.common.api.storagemonitor.StorageMonitorInsertionStrategy;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
+import com.refinedmods.refinedstorage.mekanism.ChemicalUtil;
 
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -15,7 +17,7 @@ import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalHandler;
 import net.minecraft.world.item.ItemStack;
 
-import static com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResource.ofChemicalStack;
+import static com.refinedmods.refinedstorage.mekanism.ChemicalResource.ofChemicalStack;
 
 public class ChemicalStorageMonitorInsertionStrategy implements StorageMonitorInsertionStrategy {
     @Override
@@ -30,7 +32,7 @@ public class ChemicalStorageMonitorInsertionStrategy implements StorageMonitorIn
         }
         final RootStorage rootStorage = network.getComponent(StorageNetworkComponent.class);
         final ItemStack modifiedStack = stack.copy();
-        return Optional.ofNullable(modifiedStack.getCapability(ChemicalResourceType.ITEM_CAPABILITY))
+        return Optional.ofNullable(modifiedStack.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handleInsert(actor, configuredChemicalResource, handler, rootStorage, modifiedStack));
     }
 
