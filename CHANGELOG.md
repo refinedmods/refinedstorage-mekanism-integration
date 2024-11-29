@@ -14,3 +14,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Chemical support in the Storage Monitor.
 - Chemical support in the Importer.
 - Chemical support in the Exporter.
+- Chemical support in the External Storage.

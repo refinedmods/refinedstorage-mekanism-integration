@@ -5,6 +5,7 @@ import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeReci
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipeSerializer;
 import com.refinedmods.refinedstorage.common.support.SimpleItem;
 import com.refinedmods.refinedstorage.mekanism.exporter.ChemicalExporterTransferStrategyFactory;
+import com.refinedmods.refinedstorage.mekanism.externalstorage.ChemicalPlatformExternalStorageProviderFactory;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridExtractionStrategy;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionStrategy;
 import com.refinedmods.refinedstorage.mekanism.importer.ChemicalImporterTransferStrategyFactory;
@@ -46,12 +47,12 @@ public final class ModInitializer {
         );
         for (final ChemicalStorageVariant variant : ChemicalStorageVariant.values()) {
             if (variant.getStoragePartId() != null) {
-                Items.INSTANCE.setChemicalStoragePart(
+                Items.setChemicalStoragePart(
                     variant,
                     itemRegistry.register(variant.getStoragePartId().getPath(), SimpleItem::new)
                 );
             }
-            Items.INSTANCE.setChemicalStorageDisk(
+            Items.setChemicalStorageDisk(
                 variant,
                 itemRegistry.register(variant.getStorageDiskId().getPath(), () -> new ChemicalStorageDiskItem(
                     RefinedStorageApi.INSTANCE.getStorageContainerItemHelper(),
@@ -70,7 +71,7 @@ public final class ModInitializer {
             () -> new StorageContainerUpgradeRecipeSerializer<>(
                 ChemicalStorageVariant.values(),
                 to -> new StorageContainerUpgradeRecipe<>(
-                    ChemicalStorageVariant.values(), to, Items.INSTANCE::getChemicalStorageDisk
+                    ChemicalStorageVariant.values(), to, Items::getChemicalStorageDisk
                 )
             )
         );
@@ -93,6 +94,9 @@ public final class ModInitializer {
             CHEMICAL_ID,
             new ChemicalExporterTransferStrategyFactory()
         );
+        RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
+            new ChemicalPlatformExternalStorageProviderFactory()
+        );
     }
 
     private void registerCreativeModeTabListener(final BuildCreativeModeTabContentsEvent e) {
@@ -105,11 +109,11 @@ public final class ModInitializer {
         }
         for (final ChemicalStorageVariant variant : ChemicalStorageVariant.values()) {
             if (variant.getStoragePartId() != null) {
-                e.accept(Items.INSTANCE.getChemicalStoragePart(variant));
+                e.accept(Items.getChemicalStoragePart(variant));
             }
         }
         for (final ChemicalStorageVariant variant : ChemicalStorageVariant.values()) {
-            e.accept(Items.INSTANCE.getChemicalStorageDisk(variant));
+            e.accept(Items.getChemicalStorageDisk(variant));
         }
     }
 }

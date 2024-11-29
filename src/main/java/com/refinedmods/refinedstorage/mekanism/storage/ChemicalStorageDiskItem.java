@@ -77,7 +77,7 @@ public class ChemicalStorageDiskItem extends AbstractStorageContainerItem implem
         if (variant == ChemicalStorageVariant.CREATIVE) {
             return null;
         }
-        return new ItemStack(Items.INSTANCE.getChemicalStoragePart(variant), count);
+        return new ItemStack(Items.getChemicalStoragePart(variant), count);
     }
 
     @Override

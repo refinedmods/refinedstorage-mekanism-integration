@@ -24,7 +24,7 @@ public final class ClientModInitializer {
         final ResourceLocation diskModel = createMekanismIntegrationIdentifier("block/disk/chemical_disk");
         for (final ChemicalStorageVariant variant : ChemicalStorageVariant.values()) {
             RefinedStorageApi.INSTANCE.getStorageContainerItemHelper().registerDiskModel(
-                Items.INSTANCE.getChemicalStorageDisk(variant),
+                Items.getChemicalStorageDisk(variant),
                 diskModel
             );
         }

@@ -55,7 +55,7 @@ public enum ChemicalStorageVariant implements StringRepresentable, StorageVarian
         if (this == CREATIVE) {
             return null;
         }
-        return Items.INSTANCE.getChemicalStoragePart(this);
+        return Items.getChemicalStoragePart(this);
     }
 
     public ResourceLocation getStorageDiskId() {

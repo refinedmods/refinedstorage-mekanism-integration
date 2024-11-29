@@ -1,6 +1,7 @@
 package com.refinedmods.refinedstorage.mekanism;
 
 import com.refinedmods.refinedstorage.api.core.NullableType;
+import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
 import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 
 import java.util.Collections;
@@ -29,7 +30,29 @@ public class ChemicalCapabilityCache {
         return Optional.ofNullable(cache.getCapability());
     }
 
-    public Iterator<ResourceKey> iterator() {
+    public Iterator<ResourceAmount> createAmountIterator() {
+        return getCapability().map(handler -> (Iterator<ResourceAmount>) new AbstractIterator<ResourceAmount>() {
+            private int index;
+
+            @Nullable
+            @Override
+            protected ResourceAmount computeNext() {
+                if (index > handler.getChemicalTanks()) {
+                    return endOfData();
+                }
+                for (; index < handler.getChemicalTanks(); ++index) {
+                    final ChemicalStack slot = handler.getChemicalInTank(index);
+                    if (!slot.isEmpty()) {
+                        index++;
+                        return new ResourceAmount(ofChemicalStack(slot), slot.getAmount());
+                    }
+                }
+                return endOfData();
+            }
+        }).orElse(Collections.emptyListIterator());
+    }
+
+    public Iterator<ResourceKey> createIterator() {
         return getCapability().map(handler -> (Iterator<ResourceKey>) new AbstractIterator<ResourceKey>() {
             private int index;
 
