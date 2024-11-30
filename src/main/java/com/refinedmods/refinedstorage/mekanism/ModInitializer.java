@@ -9,6 +9,8 @@ import com.refinedmods.refinedstorage.mekanism.externalstorage.ChemicalPlatformE
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridExtractionStrategy;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionStrategy;
 import com.refinedmods.refinedstorage.mekanism.importer.ChemicalImporterTransferStrategyFactory;
+import com.refinedmods.refinedstorage.mekanism.recipemod.EmiChemicalResourceModIngredientConverter;
+import com.refinedmods.refinedstorage.mekanism.recipemod.JeiChemicalRecipeModIngredientConverter;
 import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageDiskItem;
 import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageVariant;
 import com.refinedmods.refinedstorage.mekanism.storagemonitor.ChemicalStorageMonitorInsertionStrategy;
@@ -22,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
@@ -97,6 +100,11 @@ public final class ModInitializer {
         RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
             new ChemicalPlatformExternalStorageProviderFactory()
         );
+        if (ModList.get().isLoaded("emi")) {
+            RefinedStorageApi.INSTANCE.addIngredientConverter(new EmiChemicalResourceModIngredientConverter());
+        } else if (ModList.get().isLoaded("jei")) {
+            RefinedStorageApi.INSTANCE.addIngredientConverter(new JeiChemicalRecipeModIngredientConverter());
+        }
     }
 
     private void registerCreativeModeTabListener(final BuildCreativeModeTabContentsEvent e) {

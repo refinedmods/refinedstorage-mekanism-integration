@@ -22,6 +22,10 @@ repositories {
         name = "JEI"
         url = uri("https://maven.blamejared.com/")
     }
+    maven {
+        name = "EMI"
+        url = uri("https://maven.terraformersmc.com/")
+    }
 }
 
 refinedarchitect {
@@ -40,12 +44,16 @@ base {
 }
 
 val refinedstorageVersion: String by project
+val refinedstorageJeiIntegrationVersion: String by project
 val minecraftVersion: String by project
 val mekanismVersion: String by project
 val jeiVersion: String by project
+val emiVersion: String by project
 
 dependencies {
     api("com.refinedmods.refinedstorage:refinedstorage-neoforge:${refinedstorageVersion}")
+    runtimeOnly("com.refinedmods.refinedstorage:refinedstorage-jei-integration-neoforge:${refinedstorageJeiIntegrationVersion}")
+    // runtimeOnly("com.refinedmods.refinedstorage:refinedstorage-emi-integration-neoforge:0.5.0")
     compileOnlyApi("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api")
     runtimeOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:all") {
         exclude(group = "com.blamejared.crafttweaker")
@@ -54,5 +62,7 @@ dependencies {
     compileOnlyApi("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}")
     testCompileOnly("mezz.jei:jei-${minecraftVersion}-common:${jeiVersion}")
     compileOnlyApi("mezz.jei:jei-${minecraftVersion}-neoforge-api:${jeiVersion}")
+    // runtimeOnly("dev.emi:emi-neoforge:${emiVersion}")
+    compileOnlyApi("dev.emi:emi-neoforge:${emiVersion}")
 }
 
