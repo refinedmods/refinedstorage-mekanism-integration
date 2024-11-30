@@ -1,7 +1,7 @@
 package com.refinedmods.refinedstorage.mekanism.grid;
 
 import com.refinedmods.refinedstorage.common.Platform;
-import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
+import com.refinedmods.refinedstorage.common.api.RefinedStorageClientApi;
 import com.refinedmods.refinedstorage.common.api.grid.GridInsertionHint;
 import com.refinedmods.refinedstorage.common.support.tooltip.MouseClientTooltipComponent;
 import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
@@ -27,9 +27,12 @@ public class ChemicalGridInsertionHint implements GridInsertionHint {
 
     private ClientTooltipComponent createComponent(final ChemicalStack result) {
         final ChemicalResource chemicalResource = ofChemicalStack(result);
-        final String amount = result.getAmount() == Platform.INSTANCE.getBucketAmount()
-            ? null
-            : RefinedStorageApi.INSTANCE.getResourceRendering(ChemicalResource.class).formatAmount(result.getAmount());
+        final String amount = result.getAmount() == Platform.INSTANCE.getBucketAmount() ? null : doFormat(result);
         return MouseClientTooltipComponent.resource(MouseClientTooltipComponent.Type.RIGHT, chemicalResource, amount);
+    }
+
+    private static String doFormat(final ChemicalStack result) {
+        return RefinedStorageClientApi.INSTANCE.getResourceRendering(ChemicalResource.class)
+            .formatAmount(result.getAmount());
     }
 }

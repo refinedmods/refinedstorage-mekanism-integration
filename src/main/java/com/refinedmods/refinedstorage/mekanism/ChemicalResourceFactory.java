@@ -11,7 +11,9 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.refinedmods.refinedstorage.mekanism.ChemicalResource.ofChemicalStack;
 
-class ChemicalResourceFactory implements ResourceFactory {
+public enum ChemicalResourceFactory implements ResourceFactory {
+    INSTANCE;
+
     @Override
     public Optional<ResourceAmount> create(final ItemStack stack) {
         return Optional.ofNullable(stack.getCapability(ChemicalUtil.ITEM_CAPABILITY))

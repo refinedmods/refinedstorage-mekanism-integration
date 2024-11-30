@@ -1,4 +1,4 @@
-package com.refinedmods.refinedstorage.mekanism;
+package com.refinedmods.refinedstorage.mekanism.content;
 
 import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageVariant;
 
@@ -12,6 +12,8 @@ public final class Items {
     private static final Map<ChemicalStorageVariant, Supplier<Item>> CHEMICAL_STORAGE_PARTS =
         new EnumMap<>(ChemicalStorageVariant.class);
     private static final Map<ChemicalStorageVariant, Supplier<Item>> CHEMICAL_STORAGE_DISKS =
+        new EnumMap<>(ChemicalStorageVariant.class);
+    private static final Map<ChemicalStorageVariant, Supplier<Item>> CHEMICAL_STORAGE_BLOCKS =
         new EnumMap<>(ChemicalStorageVariant.class);
 
     private Items() {
@@ -31,5 +33,13 @@ public final class Items {
 
     public static void setChemicalStorageDisk(final ChemicalStorageVariant variant, final Supplier<Item> supplier) {
         CHEMICAL_STORAGE_DISKS.put(variant, supplier);
+    }
+
+    public static Item getChemicalStorageBlock(final ChemicalStorageVariant variant) {
+        return CHEMICAL_STORAGE_BLOCKS.get(variant).get();
+    }
+
+    public static void setChemicalStorageBlock(final ChemicalStorageVariant variant, final Supplier<Item> supplier) {
+        CHEMICAL_STORAGE_BLOCKS.put(variant, supplier);
     }
 }

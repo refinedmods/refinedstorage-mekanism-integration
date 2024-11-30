@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EPE",
+    "EME",
+    "ERE"
+  ],
+  "key": {
+    "M": {
+      "item": "refinedstorage:machine_casing"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "P": {
+      "item": "refinedstorage_mekanism_integration:256b_chemical_storage_part"
+    },
+    "E": {
+      "item": "mekanism:ingot_osmium"
+    }
+  },
+  "result": {
+    "id": "refinedstorage_mekanism_integration:256b_chemical_storage_block"
+  }
+}
