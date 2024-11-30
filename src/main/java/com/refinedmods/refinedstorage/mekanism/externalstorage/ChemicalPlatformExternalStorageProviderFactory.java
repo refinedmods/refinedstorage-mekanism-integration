@@ -21,6 +21,6 @@ public class ChemicalPlatformExternalStorageProviderFactory implements PlatformE
 
     @Override
     public int getPriority() {
-        return -2;
+        return -1;
     }
 }
