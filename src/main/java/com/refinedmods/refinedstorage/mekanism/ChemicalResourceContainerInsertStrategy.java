@@ -1,4 +1,4 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism;
 
 import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
 import com.refinedmods.refinedstorage.api.resource.ResourceKey;
@@ -12,14 +12,14 @@ import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalStack;
 import net.minecraft.world.item.ItemStack;
 
-public class ChemicalResourceContainerInsertStrategy implements ResourceContainerInsertStrategy {
+class ChemicalResourceContainerInsertStrategy implements ResourceContainerInsertStrategy {
     @Override
     public Optional<InsertResult> insert(final ItemStack container, final ResourceAmount resourceAmount) {
         if (!(resourceAmount.resource() instanceof ChemicalResource(Chemical chemical))) {
             return Optional.empty();
         }
         final ItemStack modifiedContainer = container.copy();
-        return Optional.ofNullable(modifiedContainer.getCapability(ChemicalResourceType.ITEM_CAPABILITY))
+        return Optional.ofNullable(modifiedContainer.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handler.insertChemical(
                 new ChemicalStack(chemical, resourceAmount.amount()),
                 Action.EXECUTE
@@ -28,14 +28,13 @@ public class ChemicalResourceContainerInsertStrategy implements ResourceContaine
             .map(inserted -> new InsertResult(modifiedContainer, inserted));
     }
 
-    // TODO: IFace max is wrong!
     @Override
     public Optional<ConversionInfo> getConversionInfo(final ResourceKey resource, final ItemStack carriedStack) {
         if (!(resource instanceof ChemicalResource(Chemical chemical))) {
             return Optional.empty();
         }
         final ItemStack modifiedStack = carriedStack.copy();
-        return Optional.ofNullable(modifiedStack.getCapability(ChemicalResourceType.ITEM_CAPABILITY))
+        return Optional.ofNullable(modifiedStack.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handler.insertChemical(
                 new ChemicalStack(chemical, Platform.INSTANCE.getBucketAmount()),
                 Action.EXECUTE

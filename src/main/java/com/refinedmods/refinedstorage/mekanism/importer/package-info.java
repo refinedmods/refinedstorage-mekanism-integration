@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @FieldsAndMethodsAreNonnullByDefault
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.importer;
 
 import com.refinedmods.refinedstorage.api.core.FieldsAndMethodsAreNonnullByDefault;
 

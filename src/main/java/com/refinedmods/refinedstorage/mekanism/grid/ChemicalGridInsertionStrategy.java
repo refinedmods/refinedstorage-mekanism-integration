@@ -1,9 +1,12 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.grid;
 
 import com.refinedmods.refinedstorage.api.grid.operations.GridInsertMode;
 import com.refinedmods.refinedstorage.api.grid.operations.GridOperations;
 import com.refinedmods.refinedstorage.common.api.grid.Grid;
 import com.refinedmods.refinedstorage.common.api.grid.strategy.GridInsertionStrategy;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResourceType;
+import com.refinedmods.refinedstorage.mekanism.ChemicalUtil;
 
 import javax.annotation.Nullable;
 
@@ -14,8 +17,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 
-import static com.refinedmods.refinedstorage.mekanism.MekanismUtil.toMekanismAction;
-import static com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResource.ofChemicalStack;
+import static com.refinedmods.refinedstorage.mekanism.ChemicalResource.ofChemicalStack;
+import static com.refinedmods.refinedstorage.mekanism.ChemicalUtil.toMekanismAction;
 
 public class ChemicalGridInsertionStrategy implements GridInsertionStrategy {
     private final AbstractContainerMenu menu;
@@ -60,7 +63,7 @@ public class ChemicalGridInsertionStrategy implements GridInsertionStrategy {
 
     @Nullable
     private IChemicalHandler getChemicalStorage(final ItemStack stack) {
-        return stack.getCapability(ChemicalResourceType.ITEM_CAPABILITY);
+        return stack.getCapability(ChemicalUtil.ITEM_CAPABILITY);
     }
 
     @Override

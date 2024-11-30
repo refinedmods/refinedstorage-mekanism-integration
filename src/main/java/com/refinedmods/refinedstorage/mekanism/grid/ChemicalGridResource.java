@@ -1,4 +1,4 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.grid;
 
 import com.refinedmods.refinedstorage.api.grid.operations.GridExtractMode;
 import com.refinedmods.refinedstorage.api.grid.view.GridResourceAttributeKey;
@@ -13,6 +13,10 @@ import com.refinedmods.refinedstorage.common.api.grid.view.AbstractPlatformGridR
 import com.refinedmods.refinedstorage.common.api.support.resource.ResourceRendering;
 import com.refinedmods.refinedstorage.common.api.support.resource.ResourceType;
 import com.refinedmods.refinedstorage.common.support.tooltip.MouseClientTooltipComponent;
+import com.refinedmods.refinedstorage.mekanism.ChemicalRenderer;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResourceType;
+import com.refinedmods.refinedstorage.mekanism.ChemicalUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -52,7 +56,7 @@ public class ChemicalGridResource extends AbstractPlatformGridResource<ChemicalR
     @Override
     public List<ClientTooltipComponent> getExtractionHints(final ItemStack carriedStack, final GridView view) {
         final ItemStack modifiedStack = carriedStack.copy();
-        return Optional.ofNullable(modifiedStack.getCapability(ChemicalResourceType.ITEM_CAPABILITY))
+        return Optional.ofNullable(modifiedStack.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handler.insertChemical(
                 new ChemicalStack(resource.chemical(), Platform.INSTANCE.getBucketAmount()),
                 Action.EXECUTE
@@ -80,7 +84,7 @@ public class ChemicalGridResource extends AbstractPlatformGridResource<ChemicalR
             return true;
         }
         final ChemicalStack toFill = new ChemicalStack(resource.chemical(), view.getAmount(resource));
-        return Optional.ofNullable(carriedStack.getCapability(ChemicalResourceType.ITEM_CAPABILITY))
+        return Optional.ofNullable(carriedStack.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handler.insertChemical(toFill, Action.SIMULATE))
             .map(remainder -> remainder.getAmount() != toFill.getAmount())
             .orElse(false);

@@ -1,10 +1,13 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.grid;
 
 import com.refinedmods.refinedstorage.api.grid.operations.GridExtractMode;
 import com.refinedmods.refinedstorage.api.grid.operations.GridOperations;
 import com.refinedmods.refinedstorage.common.api.grid.Grid;
 import com.refinedmods.refinedstorage.common.api.grid.strategy.GridExtractionStrategy;
 import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResourceType;
+import com.refinedmods.refinedstorage.mekanism.ChemicalUtil;
 
 import javax.annotation.Nullable;
 
@@ -15,7 +18,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 
-import static com.refinedmods.refinedstorage.mekanism.MekanismUtil.toMekanismAction;
+import static com.refinedmods.refinedstorage.mekanism.ChemicalUtil.toMekanismAction;
 
 public class ChemicalGridExtractionStrategy implements GridExtractionStrategy {
     private final AbstractContainerMenu menu;
@@ -41,7 +44,7 @@ public class ChemicalGridExtractionStrategy implements GridExtractionStrategy {
 
     @Nullable
     private IChemicalHandler getChemicalStorage(final ItemStack stack) {
-        return stack.getCapability(ChemicalResourceType.ITEM_CAPABILITY);
+        return stack.getCapability(ChemicalUtil.ITEM_CAPABILITY);
     }
 
     private void extractWithContainerOnCursor(final ChemicalResource chemicalResource,

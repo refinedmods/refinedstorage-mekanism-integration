@@ -4,18 +4,19 @@ import com.refinedmods.refinedstorage.common.api.RefinedStorageApi;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipe;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipeSerializer;
 import com.refinedmods.refinedstorage.common.support.SimpleItem;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalGridExtractionStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalGridInsertionStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResourceContainerInsertStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResourceFactory;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalResourceType;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageDiskItem;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageMonitorInsertionStrategy;
-import com.refinedmods.refinedstorage.mekanism.chemical.ChemicalStorageVariant;
+import com.refinedmods.refinedstorage.mekanism.exporter.ChemicalExporterTransferStrategyFactory;
+import com.refinedmods.refinedstorage.mekanism.externalstorage.ChemicalPlatformExternalStorageProviderFactory;
+import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridExtractionStrategy;
+import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionStrategy;
+import com.refinedmods.refinedstorage.mekanism.importer.ChemicalImporterTransferStrategyFactory;
+import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageDiskItem;
+import com.refinedmods.refinedstorage.mekanism.storage.ChemicalStorageVariant;
+import com.refinedmods.refinedstorage.mekanism.storagemonitor.ChemicalStorageMonitorInsertionStrategy;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -31,6 +32,8 @@ import static com.refinedmods.refinedstorage.mekanism.MekanismIntegrationIdentif
 
 @Mod(MekanismIntegrationIdentifierUtil.MOD_ID)
 public final class ModInitializer {
+    private static final ResourceLocation CHEMICAL_ID = createMekanismIntegrationIdentifier("chemical");
+
     public ModInitializer(final IEventBus eventBus) {
         if (FMLEnvironment.dist == Dist.CLIENT) {
             eventBus.addListener(ClientModInitializer::onClientSetup);
@@ -44,12 +47,12 @@ public final class ModInitializer {
         );
         for (final ChemicalStorageVariant variant : ChemicalStorageVariant.values()) {
             if (variant.getStoragePartId() != null) {
-                Items.INSTANCE.setChemicalStoragePart(
+                Items.setChemicalStoragePart(
                     variant,
                     itemRegistry.register(variant.getStoragePartId().getPath(), SimpleItem::new)
                 );
             }
-            Items.INSTANCE.setChemicalStorageDisk(
+            Items.setChemicalStorageDisk(
                 variant,
                 itemRegistry.register(variant.getStorageDiskId().getPath(), () -> new ChemicalStorageDiskItem(
                     RefinedStorageApi.INSTANCE.getStorageContainerItemHelper(),
@@ -68,7 +71,7 @@ public final class ModInitializer {
             () -> new StorageContainerUpgradeRecipeSerializer<>(
                 ChemicalStorageVariant.values(),
                 to -> new StorageContainerUpgradeRecipe<>(
-                    ChemicalStorageVariant.values(), to, Items.INSTANCE::getChemicalStorageDisk
+                    ChemicalStorageVariant.values(), to, Items::getChemicalStorageDisk
                 )
             )
         );
@@ -76,19 +79,24 @@ public final class ModInitializer {
     }
 
     private void setup(final FMLCommonSetupEvent e) {
-        RefinedStorageApi.INSTANCE.getResourceTypeRegistry().register(
-            createMekanismIntegrationIdentifier("chemical"),
-            ChemicalResourceType.INSTANCE
-        );
+        RefinedStorageApi.INSTANCE.getResourceTypeRegistry().register(CHEMICAL_ID, ChemicalResourceType.INSTANCE);
         RefinedStorageApi.INSTANCE.getAlternativeResourceFactories().add(new ChemicalResourceFactory());
-        RefinedStorageApi.INSTANCE.getStorageTypeRegistry().register(
-            createMekanismIntegrationIdentifier("chemical"),
-            ChemicalResourceType.STORAGE_TYPE
-        );
+        RefinedStorageApi.INSTANCE.getStorageTypeRegistry().register(CHEMICAL_ID, ChemicalResourceType.STORAGE_TYPE);
         RefinedStorageApi.INSTANCE.addGridInsertionStrategyFactory(ChemicalGridInsertionStrategy::new);
         RefinedStorageApi.INSTANCE.addGridExtractionStrategyFactory(ChemicalGridExtractionStrategy::new);
         RefinedStorageApi.INSTANCE.addStorageMonitorInsertionStrategy(new ChemicalStorageMonitorInsertionStrategy());
         RefinedStorageApi.INSTANCE.addResourceContainerInsertStrategy(new ChemicalResourceContainerInsertStrategy());
+        RefinedStorageApi.INSTANCE.getImporterTransferStrategyRegistry().register(
+            CHEMICAL_ID,
+            new ChemicalImporterTransferStrategyFactory()
+        );
+        RefinedStorageApi.INSTANCE.getExporterTransferStrategyRegistry().register(
+            CHEMICAL_ID,
+            new ChemicalExporterTransferStrategyFactory()
+        );
+        RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
+            new ChemicalPlatformExternalStorageProviderFactory()
+        );
     }
 
     private void registerCreativeModeTabListener(final BuildCreativeModeTabContentsEvent e) {
@@ -101,11 +109,11 @@ public final class ModInitializer {
         }
         for (final ChemicalStorageVariant variant : ChemicalStorageVariant.values()) {
             if (variant.getStoragePartId() != null) {
-                e.accept(Items.INSTANCE.getChemicalStoragePart(variant));
+                e.accept(Items.getChemicalStoragePart(variant));
             }
         }
         for (final ChemicalStorageVariant variant : ChemicalStorageVariant.values()) {
-            e.accept(Items.INSTANCE.getChemicalStorageDisk(variant));
+            e.accept(Items.getChemicalStorageDisk(variant));
         }
     }
 }

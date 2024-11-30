@@ -1,4 +1,4 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.storage;
 
 import com.refinedmods.refinedstorage.common.Platform;
 import com.refinedmods.refinedstorage.common.storage.StorageVariant;
@@ -55,7 +55,7 @@ public enum ChemicalStorageVariant implements StringRepresentable, StorageVarian
         if (this == CREATIVE) {
             return null;
         }
-        return Items.INSTANCE.getChemicalStoragePart(this);
+        return Items.getChemicalStoragePart(this);
     }
 
     public ResourceLocation getStorageDiskId() {

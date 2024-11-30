@@ -1,9 +1,10 @@
-package com.refinedmods.refinedstorage.mekanism.chemical;
+package com.refinedmods.refinedstorage.mekanism.grid;
 
 import com.refinedmods.refinedstorage.api.grid.view.GridResource;
 import com.refinedmods.refinedstorage.api.grid.view.GridResourceFactory;
 import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 import com.refinedmods.refinedstorage.common.api.grid.GridResourceAttributeKeys;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
 
 import java.util.Map;
 import java.util.Optional;
@@ -15,11 +16,8 @@ import mekanism.api.chemical.Chemical;
 import net.minecraft.core.Holder;
 import net.neoforged.fml.ModList;
 
-public class ChemicalGridResourceFactory implements GridResourceFactory {
-    public static final ChemicalGridResourceFactory INSTANCE = new ChemicalGridResourceFactory();
-
-    private ChemicalGridResourceFactory() {
-    }
+public enum ChemicalGridResourceFactory implements GridResourceFactory {
+    INSTANCE;
 
     @Override
     public Optional<GridResource> apply(final ResourceKey resource, final boolean autocraftable) {
