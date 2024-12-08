@@ -2,7 +2,7 @@ package com.refinedmods.refinedstorage.mekanism.storage;
 
 import com.refinedmods.refinedstorage.common.Platform;
 import com.refinedmods.refinedstorage.common.storage.StorageVariant;
-import com.refinedmods.refinedstorage.mekanism.Items;
+import com.refinedmods.refinedstorage.mekanism.content.Items;
 
 import javax.annotation.Nullable;
 
@@ -21,6 +21,7 @@ public enum ChemicalStorageVariant implements StringRepresentable, StorageVarian
 
     private final String name;
     private final ResourceLocation storageDiskId;
+    private final ResourceLocation storageBlockId;
     @Nullable
     private final ResourceLocation storagePartId;
     @Nullable
@@ -32,6 +33,7 @@ public enum ChemicalStorageVariant implements StringRepresentable, StorageVarian
             ? createMekanismIntegrationIdentifier(name + "_chemical_storage_part")
             : null;
         this.storageDiskId = createMekanismIntegrationIdentifier(name + "_chemical_storage_disk");
+        this.storageBlockId = createMekanismIntegrationIdentifier(name + "_chemical_storage_block");
         this.capacityInBuckets = capacityInBuckets;
     }
 
@@ -62,9 +64,17 @@ public enum ChemicalStorageVariant implements StringRepresentable, StorageVarian
         return storageDiskId;
     }
 
+    public ResourceLocation getStorageBlockId() {
+        return storageBlockId;
+    }
+
     @Nullable
     public ResourceLocation getStoragePartId() {
         return storagePartId;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

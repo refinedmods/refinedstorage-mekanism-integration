@@ -52,7 +52,7 @@ val emiVersion: String by project
 
 dependencies {
     api("com.refinedmods.refinedstorage:refinedstorage-neoforge:${refinedstorageVersion}")
-    runtimeOnly("com.refinedmods.refinedstorage:refinedstorage-jei-integration-neoforge:${refinedstorageJeiIntegrationVersion}")
+    // runtimeOnly("com.refinedmods.refinedstorage:refinedstorage-jei-integration-neoforge:${refinedstorageJeiIntegrationVersion}")
     // runtimeOnly("com.refinedmods.refinedstorage:refinedstorage-emi-integration-neoforge:0.5.0")
     compileOnlyApi("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:api")
     runtimeOnly("mekanism:Mekanism:${minecraftVersion}-${mekanismVersion}:all") {

@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Added
 
 - Chemical Storage Disk
+- Chemical Storage blocks
 - Chemical support in the Grid.
 - Chemical support in the Storage Monitor.
 - Chemical support in the Importer.

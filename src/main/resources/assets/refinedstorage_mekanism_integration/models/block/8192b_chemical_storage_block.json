@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "refinedstorage_mekanism_integration:block/chemical_storage_block/8192b_chemical_storage_block"
+  }
+}
