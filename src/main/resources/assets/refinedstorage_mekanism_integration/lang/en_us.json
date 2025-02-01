@@ -18,6 +18,7 @@
   "block.refinedstorage_mekanism_integration.1024b_chemical_storage_block": "1024B Chemical Storage Block",
   "block.refinedstorage_mekanism_integration.8192b_chemical_storage_block": "8192B Chemical Storage Block",
   "block.refinedstorage_mekanism_integration.creative_chemical_storage_block": "Creative Chemical Storage Block",
+  "tag.item.refinedstorage_mekanism_integration.chemical_storage_disks": "Chemical Storage Disks",
   "advancements.refinedstorage_mekanism_integration.storing_chemicals": "Storing chemicals",
   "advancements.refinedstorage_mekanism_integration.storing_chemicals.description": "Craft a Chemical Storage Disk and put it in your Disk Drive",
   "refinedstorage_mekanism_integration.configuration.title": "Refined Storage - Mekanism Integration Configuration",

@@ -14,6 +14,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 -   Support for Refined Storage v2.0.0-milestone.4.12.
+-   Missing tag translation for chemical storage disks.
 
 ## [0.1.0] - 2024-12-08
 
