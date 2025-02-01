@@ -6,6 +6,7 @@ import com.refinedmods.refinedstorage.common.content.ExtendedMenuTypeFactory;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipe;
 import com.refinedmods.refinedstorage.common.storage.StorageContainerUpgradeRecipeSerializer;
 import com.refinedmods.refinedstorage.common.support.SimpleItem;
+import com.refinedmods.refinedstorage.mekanism.autocrafting.ChemicalPatternProviderExternalPatternSinkFactory;
 import com.refinedmods.refinedstorage.mekanism.content.BlockEntities;
 import com.refinedmods.refinedstorage.mekanism.content.Blocks;
 import com.refinedmods.refinedstorage.mekanism.content.Items;
@@ -226,6 +227,9 @@ public final class ModInitializer {
         );
         RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
             new ChemicalPlatformExternalStorageProviderFactory()
+        );
+        RefinedStorageApi.INSTANCE.addPatternProviderExternalPatternSinkFactory(
+            new ChemicalPatternProviderExternalPatternSinkFactory()
         );
         if (ModList.get().isLoaded("emi")) {
             RefinedStorageApi.INSTANCE.addIngredientConverter(new EmiChemicalResourceModIngredientConverter());

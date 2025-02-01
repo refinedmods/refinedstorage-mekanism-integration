@@ -7,6 +7,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+-   You can now use chemicals in autocrafting.
+
+### Fixed
+
+-   Support for Refined Storage v2.0.0-milestone.4.12.
+
 ## [0.1.0] - 2024-12-08
 
 ## Added
