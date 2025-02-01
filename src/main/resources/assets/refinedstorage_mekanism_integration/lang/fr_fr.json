@@ -18,6 +18,7 @@
   "block.refinedstorage_mekanism_integration.1024b_chemical_storage_block": "Bloc de stockage de produits chimiques 1024B",
   "block.refinedstorage_mekanism_integration.8192b_chemical_storage_block": "Bloc de stockage de produits chimiques 8192B",
   "block.refinedstorage_mekanism_integration.creative_chemical_storage_block": "Bloc de stockage de produits chimiques créatif",
+  "tag.item.refinedstorage_mekanism_integration.chemical_storage_disks": "Chemical Storage Disks",
   "advancements.refinedstorage_mekanism_integration.storing_chemicals": "Stockage des produits chimiques",
   "advancements.refinedstorage_mekanism_integration.storing_chemicals.description": "Fabriquez un Disque de stockage de produits chimiques et mettez-le dans votre Lecteur de disque",
   "refinedstorage_mekanism_integration.configuration.title": "Configuration de Refined Storage - Mekanism Integration",
