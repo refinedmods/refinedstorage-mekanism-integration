@@ -14,7 +14,7 @@ Mekanism integration for Refined Storage.
 [[dependencies.refinedstorage_mekanism_integration]]
 modId = "refinedstorage"
 type = "required"
-versionRange = "2.0.0-milestone.4.11"
+versionRange = "2.0.0-milestone.4.12"
 side = "BOTH"
 [[dependencies.refinedstorage_mekanism_integration]]
 modId = "mekanism"
