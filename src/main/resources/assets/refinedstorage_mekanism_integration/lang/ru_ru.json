@@ -18,7 +18,7 @@
   "block.refinedstorage_mekanism_integration.1024b_chemical_storage_block": "Блок хранения химикатов 1024B",
   "block.refinedstorage_mekanism_integration.8192b_chemical_storage_block": "Блок хранения химикатов 8192B",
   "block.refinedstorage_mekanism_integration.creative_chemical_storage_block": "Творческий блок хранения химикатов",
-  "tag.item.refinedstorage_mekanism_integration.chemical_storage_disks": "Chemical Storage Disks",
+  "tag.item.refinedstorage_mekanism_integration.chemical_storage_disks": "Части для хранения химикатов",
   "advancements.refinedstorage_mekanism_integration.storing_chemicals": "Храним химикаты",
   "advancements.refinedstorage_mekanism_integration.storing_chemicals.description": "Создайте диск для хранения химикатов и положите его в дисковый привод",
   "refinedstorage_mekanism_integration.configuration.title": "Конфигурация Refined Storage - Mekanism Integration",
