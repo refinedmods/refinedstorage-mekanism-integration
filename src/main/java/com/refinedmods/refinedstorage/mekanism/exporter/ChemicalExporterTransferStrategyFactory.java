@@ -1,39 +1,61 @@
 package com.refinedmods.refinedstorage.mekanism.exporter;
 
 import com.refinedmods.refinedstorage.api.network.impl.node.exporter.ExporterTransferStrategyImpl;
+import com.refinedmods.refinedstorage.api.network.impl.node.exporter.MissingResourcesListeningExporterTransferStrategy;
 import com.refinedmods.refinedstorage.api.network.node.exporter.ExporterTransferStrategy;
-import com.refinedmods.refinedstorage.api.storage.InsertableStorage;
+import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 import com.refinedmods.refinedstorage.common.Platform;
 import com.refinedmods.refinedstorage.common.api.exporter.ExporterTransferStrategyFactory;
-import com.refinedmods.refinedstorage.common.api.support.network.AmountOverride;
+import com.refinedmods.refinedstorage.common.api.storage.root.FuzzyRootStorage;
 import com.refinedmods.refinedstorage.common.api.upgrade.UpgradeState;
 import com.refinedmods.refinedstorage.common.content.Items;
-import com.refinedmods.refinedstorage.common.exporter.FuzzyExporterTransferStrategy;
+import com.refinedmods.refinedstorage.common.exporter.ExporterTransferQuotaProvider;
 import com.refinedmods.refinedstorage.mekanism.ChemicalCapabilityCache;
 import com.refinedmods.refinedstorage.mekanism.ChemicalInsertableStorage;
+import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
+
+import java.util.function.ToLongFunction;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 
+import static com.refinedmods.refinedstorage.api.network.impl.node.exporter.MissingResourcesListeningExporterTransferStrategy.OnMissingResources.scheduleAutocrafting;
+
 public class ChemicalExporterTransferStrategyFactory implements ExporterTransferStrategyFactory {
+    @Override
+    public Class<? extends ResourceKey> getResourceType() {
+        return ChemicalResource.class;
+    }
+
     @Override
     public ExporterTransferStrategy create(final ServerLevel level,
                                            final BlockPos pos,
                                            final Direction direction,
                                            final UpgradeState upgradeState,
-                                           final AmountOverride amountOverride,
                                            final boolean fuzzyMode) {
         final ChemicalCapabilityCache capabilityCache = new ChemicalCapabilityCache(level, pos, direction);
-        final InsertableStorage destination = new ChemicalInsertableStorage(
-            capabilityCache,
-            amountOverride
-        );
-        final long transferQuota = (upgradeState.has(Items.INSTANCE.getStackUpgrade()) ? 64 : 1)
+        final ChemicalInsertableStorage destination = new ChemicalInsertableStorage(capabilityCache);
+        final long singleAmount = (upgradeState.has(Items.INSTANCE.getStackUpgrade()) ? 64 : 1)
             * Platform.INSTANCE.getBucketAmount();
-        if (fuzzyMode) {
-            return new FuzzyExporterTransferStrategy(destination, transferQuota);
+        final ExporterTransferStrategy strategy = create(
+            fuzzyMode,
+            destination,
+            new ExporterTransferQuotaProvider(singleAmount, upgradeState, destination::getAmount, true)
+        );
+        if (upgradeState.has(Items.INSTANCE.getAutocraftingUpgrade())) {
+            return new MissingResourcesListeningExporterTransferStrategy(strategy, scheduleAutocrafting(
+                new ExporterTransferQuotaProvider(singleAmount, upgradeState, destination::getAmount, false)));
         }
-        return new ExporterTransferStrategyImpl(destination, transferQuota);
+        return strategy;
+    }
+
+    private ExporterTransferStrategy create(final boolean fuzzyMode,
+                                            final ChemicalInsertableStorage destination,
+                                            final ToLongFunction<ResourceKey> transferQuotaProvider) {
+        if (fuzzyMode) {
+            return new ExporterTransferStrategyImpl(destination, transferQuotaProvider, FuzzyRootStorage.expander());
+        }
+        return new ExporterTransferStrategyImpl(destination, transferQuotaProvider);
     }
 }

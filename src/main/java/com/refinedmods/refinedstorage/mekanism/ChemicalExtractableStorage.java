@@ -4,7 +4,6 @@ import com.refinedmods.refinedstorage.api.core.Action;
 import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 import com.refinedmods.refinedstorage.api.storage.Actor;
 import com.refinedmods.refinedstorage.api.storage.ExtractableStorage;
-import com.refinedmods.refinedstorage.common.api.support.network.AmountOverride;
 
 import mekanism.api.chemical.ChemicalStack;
 
@@ -12,12 +11,18 @@ import static com.refinedmods.refinedstorage.mekanism.ChemicalUtil.toMekanismAct
 
 public class ChemicalExtractableStorage implements ExtractableStorage {
     private final ChemicalCapabilityCache capabilityCache;
-    private final AmountOverride amountOverride;
 
-    public ChemicalExtractableStorage(final ChemicalCapabilityCache capabilityCache,
-                                      final AmountOverride amountOverride) {
+    public ChemicalExtractableStorage(final ChemicalCapabilityCache capabilityCache) {
         this.capabilityCache = capabilityCache;
-        this.amountOverride = amountOverride;
+    }
+
+    public long getAmount(final ResourceKey resource) {
+        if (!(resource instanceof ChemicalResource chemicalResource)) {
+            return 0;
+        }
+        return capabilityCache.getCapability()
+            .map(fluidHandler -> ChemicalUtil.getCurrentAmount(fluidHandler, chemicalResource))
+            .orElse(0L);
     }
 
     @Override
@@ -26,15 +31,7 @@ public class ChemicalExtractableStorage implements ExtractableStorage {
             return 0;
         }
         return capabilityCache.getCapability().map(chemicalHandler -> {
-            final long correctedAmount = amountOverride.overrideAmount(
-                resource,
-                amount,
-                () -> ChemicalUtil.getCurrentAmount(chemicalHandler, chemicalResource)
-            );
-            if (correctedAmount == 0) {
-                return 0L;
-            }
-            final ChemicalStack toExtractStack = new ChemicalStack(chemicalResource.chemical(), correctedAmount);
+            final ChemicalStack toExtractStack = new ChemicalStack(chemicalResource.chemical(), amount);
             final ChemicalStack drained = chemicalHandler.extractChemical(toExtractStack, toMekanismAction(action));
             return drained.getAmount();
         }).orElse(0L);
