@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-02-23
+
 ### Changed
 
 -   'B' is now displayed after chemical amounts, indicating the amount in buckets.
@@ -41,7 +43,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -   Chemical support in the External Storage.
 -   Ghost dragging support for chemicals in JEI and EMI.
 
-[Unreleased]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v0.3.0...HEAD
+
+[0.3.0]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v0.2.0...v0.3.0
 
 [0.2.0]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v0.1.0...v0.2.0
 
