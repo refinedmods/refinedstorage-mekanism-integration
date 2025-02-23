@@ -7,10 +7,15 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+-   'B' is now displayed after chemical amounts, indicating the amount in buckets.
+
 ### Fixed
 
 -   Support for Refined Storage v2.0.0-milestone.4.14.
 -   Fixed potential crash when trying to extract from empty chemical tank.
+-   Fixed chemical amounts displaying to 0.1 buckets and not 0.001. The suffix "m" is used.
 
 ## [0.2.0] - 2025-02-01
 
