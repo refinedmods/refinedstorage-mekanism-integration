@@ -19,12 +19,14 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidType;
 
 public class ChemicalResourceRendering implements ResourceRendering {
-    private static final DecimalFormat LESS_THAN_1_BUCKET_FORMATTER;
-    private static final DecimalFormat FORMATTER;
+    private static final DecimalFormat FORMATTER = new DecimalFormat(
+        "#,###.###",
+        DecimalFormatSymbols.getInstance(Locale.US)
+    );
 
     @Override
     public String formatAmount(final long amount, final boolean withUnits) {
-        return !withUnits ? format(amount) : formatWithUnits(amount);
+        return (!withUnits ? format(amount) : formatWithUnits(amount)) + "B";
     }
 
     @Override
@@ -63,11 +65,7 @@ public class ChemicalResourceRendering implements ResourceRendering {
 
     private static String formatWithUnits(final long mb) {
         final double buckets = convertToBuckets(mb);
-        if (buckets >= 1) {
-            return IdentifierUtil.formatWithUnits((long) Math.floor(buckets));
-        } else {
-            return LESS_THAN_1_BUCKET_FORMATTER.format(buckets);
-        }
+        return IdentifierUtil.formatWithUnits(buckets);
     }
 
     public static String format(final long mb) {
@@ -77,10 +75,5 @@ public class ChemicalResourceRendering implements ResourceRendering {
 
     private static double convertToBuckets(final long mb) {
         return mb / (double) FluidType.BUCKET_VOLUME;
-    }
-
-    static {
-        LESS_THAN_1_BUCKET_FORMATTER = new DecimalFormat("0.#", DecimalFormatSymbols.getInstance(Locale.US));
-        FORMATTER = new DecimalFormat("#,###.#", DecimalFormatSymbols.getInstance(Locale.US));
     }
 }

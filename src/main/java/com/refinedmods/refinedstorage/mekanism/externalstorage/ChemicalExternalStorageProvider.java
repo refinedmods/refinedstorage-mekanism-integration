@@ -7,7 +7,6 @@ import com.refinedmods.refinedstorage.api.storage.Actor;
 import com.refinedmods.refinedstorage.api.storage.ExtractableStorage;
 import com.refinedmods.refinedstorage.api.storage.InsertableStorage;
 import com.refinedmods.refinedstorage.api.storage.external.ExternalStorageProvider;
-import com.refinedmods.refinedstorage.common.api.support.network.AmountOverride;
 import com.refinedmods.refinedstorage.mekanism.ChemicalCapabilityCache;
 import com.refinedmods.refinedstorage.mekanism.ChemicalExtractableStorage;
 import com.refinedmods.refinedstorage.mekanism.ChemicalInsertableStorage;
@@ -21,8 +20,8 @@ class ChemicalExternalStorageProvider implements ExternalStorageProvider {
 
     ChemicalExternalStorageProvider(final ChemicalCapabilityCache capabilityCache) {
         this.capabilityCache = capabilityCache;
-        this.insertTarget = new ChemicalInsertableStorage(capabilityCache, AmountOverride.NONE);
-        this.extractTarget = new ChemicalExtractableStorage(capabilityCache, AmountOverride.NONE);
+        this.insertTarget = new ChemicalInsertableStorage(capabilityCache);
+        this.extractTarget = new ChemicalExtractableStorage(capabilityCache);
     }
 
     @Override
