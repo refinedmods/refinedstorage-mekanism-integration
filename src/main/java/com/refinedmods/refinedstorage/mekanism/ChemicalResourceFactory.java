@@ -18,6 +18,7 @@ public enum ChemicalResourceFactory implements ResourceFactory {
     public Optional<ResourceAmount> create(final ItemStack stack) {
         return Optional.ofNullable(stack.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handler.extractChemical(Long.MAX_VALUE, Action.SIMULATE))
+            .filter(chemicalStack -> !chemicalStack.isEmpty())
             .map(chemicalStack -> new ResourceAmount(ofChemicalStack(chemicalStack), chemicalStack.getAmount()));
     }
 

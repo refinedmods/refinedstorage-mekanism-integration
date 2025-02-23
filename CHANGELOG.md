@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 -   Support for Refined Storage v2.0.0-milestone.4.14.
+-   Fixed potential crash when trying to extract from empty chemical tank.
 
 ## [0.2.0] - 2025-02-01
 
