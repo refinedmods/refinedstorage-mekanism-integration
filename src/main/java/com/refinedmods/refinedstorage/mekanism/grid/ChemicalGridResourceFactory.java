@@ -1,13 +1,12 @@
 package com.refinedmods.refinedstorage.mekanism.grid;
 
-import com.refinedmods.refinedstorage.api.grid.view.GridResource;
-import com.refinedmods.refinedstorage.api.grid.view.GridResourceFactory;
 import com.refinedmods.refinedstorage.api.resource.ResourceKey;
+import com.refinedmods.refinedstorage.api.resource.repository.ResourceRepositoryMapper;
 import com.refinedmods.refinedstorage.common.api.grid.GridResourceAttributeKeys;
+import com.refinedmods.refinedstorage.common.api.grid.view.GridResource;
 import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,29 +15,20 @@ import mekanism.api.chemical.Chemical;
 import net.minecraft.core.Holder;
 import net.neoforged.fml.ModList;
 
-public enum ChemicalGridResourceFactory implements GridResourceFactory {
-    INSTANCE;
-
+public class ChemicalGridResourceFactory implements ResourceRepositoryMapper<GridResource> {
     @Override
-    public Optional<GridResource> apply(final ResourceKey resource, final boolean autocraftable) {
-        if (!(resource instanceof ChemicalResource chemicalResource)) {
-            return Optional.empty();
-        }
+    public GridResource apply(final ResourceKey resource) {
+        final ChemicalResource chemicalResource = (ChemicalResource) resource;
         final String name = getName(chemicalResource);
         final String modId = getModId(chemicalResource);
         final String modName = getModName(modId);
         final Set<String> tags = getTags(chemicalResource.chemical());
         final String tooltip = getTooltip(chemicalResource);
-        return Optional.of(new ChemicalGridResource(
-            chemicalResource,
-            name,
-            Map.of(
-                GridResourceAttributeKeys.MOD_ID, Set.of(modId),
-                GridResourceAttributeKeys.MOD_NAME, Set.of(modName),
-                GridResourceAttributeKeys.TAGS, tags,
-                GridResourceAttributeKeys.TOOLTIP, Set.of(tooltip)
-            ),
-            autocraftable
+        return new ChemicalGridResource(chemicalResource, name, Map.of(
+            GridResourceAttributeKeys.MOD_ID, Set.of(modId),
+            GridResourceAttributeKeys.MOD_NAME, Set.of(modName),
+            GridResourceAttributeKeys.TAGS, tags,
+            GridResourceAttributeKeys.TOOLTIP, Set.of(tooltip)
         ));
     }
 

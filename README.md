@@ -12,7 +12,6 @@
     - [Issues](https://github.com/refinedmods/refinedstorage-mekanism-integration/issues)
     - [Refined Mods on GitHub](https://github.com/refinedmods)
 - [Discord](https://discordapp.com/invite/VYzsydb)
-- [Twitter](https://twitter.com/refinedmods)
 
 ## Building
 

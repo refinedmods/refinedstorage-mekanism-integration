@@ -1,9 +1,7 @@
 package com.refinedmods.refinedstorage.mekanism;
 
-import com.refinedmods.refinedstorage.api.grid.operations.GridOperations;
-import com.refinedmods.refinedstorage.api.grid.operations.GridOperationsImpl;
-import com.refinedmods.refinedstorage.api.grid.view.GridResource;
-import com.refinedmods.refinedstorage.api.resource.ResourceKey;
+import com.refinedmods.refinedstorage.api.network.impl.node.grid.GridOperationsImpl;
+import com.refinedmods.refinedstorage.api.network.node.grid.GridOperations;
 import com.refinedmods.refinedstorage.api.storage.Actor;
 import com.refinedmods.refinedstorage.api.storage.root.RootStorage;
 import com.refinedmods.refinedstorage.common.Platform;
@@ -11,9 +9,6 @@ import com.refinedmods.refinedstorage.common.api.storage.StorageType;
 import com.refinedmods.refinedstorage.common.api.support.resource.PlatformResourceKey;
 import com.refinedmods.refinedstorage.common.api.support.resource.ResourceType;
 import com.refinedmods.refinedstorage.common.storage.SameTypeStorageType;
-import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridResourceFactory;
-
-import java.util.Optional;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -83,11 +78,6 @@ public enum ChemicalResourceType implements ResourceType {
     @Override
     public double getDisplayAmount(final long amount) {
         return amount / (double) Platform.INSTANCE.getBucketAmount();
-    }
-
-    @Override
-    public Optional<GridResource> toGridResource(final ResourceKey resourceKey, final boolean autocraftable) {
-        return ChemicalGridResourceFactory.INSTANCE.apply(resourceKey, autocraftable);
     }
 
     @Override
