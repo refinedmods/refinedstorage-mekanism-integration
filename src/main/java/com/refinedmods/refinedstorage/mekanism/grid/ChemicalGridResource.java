@@ -1,15 +1,16 @@
 package com.refinedmods.refinedstorage.mekanism.grid;
 
-import com.refinedmods.refinedstorage.api.grid.operations.GridExtractMode;
-import com.refinedmods.refinedstorage.api.grid.view.GridResourceAttributeKey;
-import com.refinedmods.refinedstorage.api.grid.view.GridView;
+import com.refinedmods.refinedstorage.api.network.node.grid.GridExtractMode;
 import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
+import com.refinedmods.refinedstorage.api.resource.repository.ResourceRepository;
 import com.refinedmods.refinedstorage.common.Platform;
 import com.refinedmods.refinedstorage.common.api.RefinedStorageClientApi;
 import com.refinedmods.refinedstorage.common.api.grid.GridScrollMode;
 import com.refinedmods.refinedstorage.common.api.grid.strategy.GridExtractionStrategy;
 import com.refinedmods.refinedstorage.common.api.grid.strategy.GridScrollingStrategy;
-import com.refinedmods.refinedstorage.common.api.grid.view.AbstractPlatformGridResource;
+import com.refinedmods.refinedstorage.common.api.grid.view.AbstractGridResource;
+import com.refinedmods.refinedstorage.common.api.grid.view.GridResource;
+import com.refinedmods.refinedstorage.common.api.grid.view.GridResourceAttributeKey;
 import com.refinedmods.refinedstorage.common.api.support.resource.ResourceRendering;
 import com.refinedmods.refinedstorage.common.api.support.resource.ResourceType;
 import com.refinedmods.refinedstorage.common.support.tooltip.MouseClientTooltipComponent;
@@ -33,16 +34,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 
-public class ChemicalGridResource extends AbstractPlatformGridResource<ChemicalResource> {
+public class ChemicalGridResource extends AbstractGridResource<ChemicalResource> {
     private final int id;
     private final ResourceRendering rendering;
     private final List<Component> tooltip;
 
     public ChemicalGridResource(final ChemicalResource resource,
                                 final String name,
-                                final Map<GridResourceAttributeKey, Set<String>> attributes,
-                                final boolean autocraftable) {
-        super(resource, name, attributes, autocraftable);
+                                final Map<GridResourceAttributeKey, Set<String>> attributes) {
+        super(resource, name, attributes);
         this.id = MekanismAPI.CHEMICAL_REGISTRY.getId(resource.chemical());
         this.rendering = RefinedStorageClientApi.INSTANCE.getResourceRendering(ChemicalResource.class);
         this.tooltip = List.of(resource.chemical().getTextComponent());
@@ -54,7 +54,8 @@ public class ChemicalGridResource extends AbstractPlatformGridResource<ChemicalR
     }
 
     @Override
-    public List<ClientTooltipComponent> getExtractionHints(final ItemStack carriedStack, final GridView view) {
+    public List<ClientTooltipComponent> getExtractionHints(final ItemStack carriedStack,
+                                                           final ResourceRepository<GridResource> repository) {
         final ItemStack modifiedStack = carriedStack.copy();
         return Optional.ofNullable(modifiedStack.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handler.insertChemical(
@@ -76,14 +77,14 @@ public class ChemicalGridResource extends AbstractPlatformGridResource<ChemicalR
     }
 
     @Override
-    public boolean canExtract(final ItemStack carriedStack, final GridView view) {
-        if (getAmount(view) == 0) {
+    public boolean canExtract(final ItemStack carriedStack, final ResourceRepository<GridResource> repository) {
+        if (getAmount(repository) == 0) {
             return false;
         }
         if (carriedStack.isEmpty()) {
             return true;
         }
-        final ChemicalStack toFill = new ChemicalStack(resource.chemical(), view.getAmount(resource));
+        final ChemicalStack toFill = new ChemicalStack(resource.chemical(), repository.getAmount(resource));
         return Optional.ofNullable(carriedStack.getCapability(ChemicalUtil.ITEM_CAPABILITY))
             .map(handler -> handler.insertChemical(toFill, Action.SIMULATE))
             .map(remainder -> remainder.getAmount() != toFill.getAmount())
@@ -108,13 +109,13 @@ public class ChemicalGridResource extends AbstractPlatformGridResource<ChemicalR
     }
 
     @Override
-    public String getDisplayedAmount(final GridView view) {
-        return rendering.formatAmount(getAmount(view), true);
+    public String getDisplayedAmount(final ResourceRepository<GridResource> repository) {
+        return rendering.formatAmount(getAmount(repository), true);
     }
 
     @Override
-    public String getAmountInTooltip(final GridView view) {
-        return rendering.formatAmount(getAmount(view));
+    public String getAmountInTooltip(final ResourceRepository<GridResource> repository) {
+        return rendering.formatAmount(getAmount(repository));
     }
 
     @Override
