@@ -1,7 +1,7 @@
 package com.refinedmods.refinedstorage.mekanism.grid;
 
-import com.refinedmods.refinedstorage.api.grid.operations.GridInsertMode;
-import com.refinedmods.refinedstorage.api.grid.operations.GridOperations;
+import com.refinedmods.refinedstorage.api.network.node.grid.GridInsertMode;
+import com.refinedmods.refinedstorage.api.network.node.grid.GridOperations;
 import com.refinedmods.refinedstorage.common.api.grid.Grid;
 import com.refinedmods.refinedstorage.common.api.grid.strategy.GridInsertionStrategy;
 import com.refinedmods.refinedstorage.mekanism.ChemicalResource;

@@ -34,6 +34,8 @@ refinedarchitect {
     sonarQube("refinedmods_refinedstorage-mekanism-integration", "refinedmods")
     publishing {
         maven = true
+        curseForge = "1230504"
+        modrinth = "QHMDf0Sd"
     }
 }
 
