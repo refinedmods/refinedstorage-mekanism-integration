@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+-   You can now insert and extract chemicals in the Interface via automation.
+
 ### Fixed
 
 -   Support for Refined Storage v2.0.0-beta.17.

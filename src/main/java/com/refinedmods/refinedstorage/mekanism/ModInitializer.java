@@ -270,6 +270,11 @@ public final class ModInitializer {
                 (be, side) -> be.getContainerProvider()
             );
         }
+        event.registerBlockEntity(
+            ChemicalUtil.BLOCK_CAPABILITY,
+            com.refinedmods.refinedstorage.common.content.BlockEntities.INSTANCE.getInterface(),
+            (be, side) -> new ResourceContainerChemicalHandlerAdapter(be.getExportedResources())
+        );
     }
 
     public static Config getConfig() {
