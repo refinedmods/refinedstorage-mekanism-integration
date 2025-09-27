@@ -10,7 +10,7 @@
       "tag": "c:silicon"
     },
     "E": {
-      "item": "mekanism:ingot_osmium"
+      "tag": "c:ingots/osmium"
     },
     "G": {
       "tag": "c:glass_blocks"

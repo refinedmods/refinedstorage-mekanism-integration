@@ -16,7 +16,7 @@
       "item": "refinedstorage_mekanism_integration:256b_chemical_storage_part"
     },
     "E": {
-      "item": "mekanism:ingot_osmium"
+      "tag": "c:ingots/osmium"
     }
   },
   "result": {
