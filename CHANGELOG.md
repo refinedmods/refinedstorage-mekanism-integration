@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 -   Support for Refined Storage v2.0.0-beta.17.
+-   Storage blocks not having mineable tag.
 
 ## [1.0.0] - 2025-03-28
 
