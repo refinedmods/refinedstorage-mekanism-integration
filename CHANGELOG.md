@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-09-27
+
 ### Added
 
 -   You can now insert and extract chemicals in the Interface via automation.
@@ -59,7 +61,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -   Chemical support in the External Storage.
 -   Ghost dragging support for chemicals in JEI and EMI.
 
-[Unreleased]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v1.1.0...HEAD
+
+[1.1.0]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v1.0.0...v1.1.0
 
 [1.0.0]: https://github.com/refinedmods/refinedstorage-mekanism-integration/compare/v0.3.0...v1.0.0
 
