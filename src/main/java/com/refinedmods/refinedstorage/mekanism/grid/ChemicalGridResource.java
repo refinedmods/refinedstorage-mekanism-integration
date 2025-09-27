@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 import mekanism.api.Action;
@@ -41,7 +42,7 @@ public class ChemicalGridResource extends AbstractGridResource<ChemicalResource>
 
     public ChemicalGridResource(final ChemicalResource resource,
                                 final String name,
-                                final Map<GridResourceAttributeKey, Set<String>> attributes) {
+                                final Function<GridResourceAttributeKey, Set<String>> attributes) {
         super(resource, name, attributes);
         this.id = MekanismAPI.CHEMICAL_REGISTRY.getId(resource.chemical());
         this.rendering = RefinedStorageClientApi.INSTANCE.getResourceRendering(ChemicalResource.class);
