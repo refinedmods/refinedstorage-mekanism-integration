@@ -15,7 +15,7 @@ import com.refinedmods.refinedstorage.mekanism.exporter.ChemicalExporterTransfer
 import com.refinedmods.refinedstorage.mekanism.externalstorage.ChemicalPlatformExternalStorageProviderFactory;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridExtractionStrategy;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionStrategy;
-import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridResourceFactory;
+import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridResourceRepositoryMapper;
 import com.refinedmods.refinedstorage.mekanism.importer.ChemicalImporterTransferStrategyFactory;
 import com.refinedmods.refinedstorage.mekanism.recipemod.EmiChemicalResourceModIngredientConverter;
 import com.refinedmods.refinedstorage.mekanism.recipemod.JeiChemicalRecipeModIngredientConverter;
@@ -215,7 +215,7 @@ public final class ModInitializer {
         RefinedStorageApi.INSTANCE.getAlternativeResourceFactories().add(ChemicalResourceFactory.INSTANCE);
         RefinedStorageApi.INSTANCE.getStorageTypeRegistry().register(CHEMICAL_ID, ChemicalResourceType.STORAGE_TYPE);
         RefinedStorageApi.INSTANCE.addGridResourceRepositoryMapper(ChemicalResource.class,
-            new ChemicalGridResourceFactory());
+            new ChemicalGridResourceRepositoryMapper());
         RefinedStorageApi.INSTANCE.addGridInsertionStrategyFactory(ChemicalGridInsertionStrategy::new);
         RefinedStorageApi.INSTANCE.addGridExtractionStrategyFactory(ChemicalGridExtractionStrategy::new);
         RefinedStorageApi.INSTANCE.addStorageMonitorInsertionStrategy(new ChemicalStorageMonitorInsertionStrategy());
@@ -270,6 +270,11 @@ public final class ModInitializer {
                 (be, side) -> be.getContainerProvider()
             );
         }
+        event.registerBlockEntity(
+            ChemicalUtil.BLOCK_CAPABILITY,
+            com.refinedmods.refinedstorage.common.content.BlockEntities.INSTANCE.getInterface(),
+            (be, side) -> new ResourceContainerChemicalHandlerAdapter(be.getExportedResources())
+        );
     }
 
     public static Config getConfig() {

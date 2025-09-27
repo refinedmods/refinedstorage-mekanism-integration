@@ -10,7 +10,7 @@
       "item": "refinedstorage:advanced_processor"
     },
     "E": {
-      "item": "mekanism:ingot_osmium"
+      "tag": "c:ingots/osmium"
     },
     "S": {
       "item": "refinedstorage_mekanism_integration:1024b_chemical_storage_part"

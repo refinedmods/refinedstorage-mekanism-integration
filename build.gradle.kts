@@ -35,7 +35,9 @@ refinedarchitect {
     publishing {
         maven = true
         curseForge = "1230504"
+        curseForgeRequiredDependencies = listOf("refined-storage", "mekanism")
         modrinth = "QHMDf0Sd"
+        modrinthRequiredDependencies = listOf("refined-storage", "mekanism")
     }
 }
 

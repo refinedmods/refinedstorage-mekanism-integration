@@ -4,18 +4,22 @@ import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 import com.refinedmods.refinedstorage.api.resource.repository.ResourceRepositoryMapper;
 import com.refinedmods.refinedstorage.common.api.grid.GridResourceAttributeKeys;
 import com.refinedmods.refinedstorage.common.api.grid.view.GridResource;
+import com.refinedmods.refinedstorage.common.api.grid.view.GridResourceAttributeKey;
 import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
 import mekanism.api.MekanismAPI;
 import mekanism.api.chemical.Chemical;
 import net.minecraft.core.Holder;
 import net.neoforged.fml.ModList;
 
-public class ChemicalGridResourceFactory implements ResourceRepositoryMapper<GridResource> {
+public class ChemicalGridResourceRepositoryMapper implements ResourceRepositoryMapper<GridResource> {
     @Override
     public GridResource apply(final ResourceKey resource) {
         final ChemicalResource chemicalResource = (ChemicalResource) resource;
@@ -24,12 +28,14 @@ public class ChemicalGridResourceFactory implements ResourceRepositoryMapper<Gri
         final String modName = getModName(modId);
         final Set<String> tags = getTags(chemicalResource.chemical());
         final String tooltip = getTooltip(chemicalResource);
-        return new ChemicalGridResource(chemicalResource, name, Map.of(
-            GridResourceAttributeKeys.MOD_ID, Set.of(modId),
-            GridResourceAttributeKeys.MOD_NAME, Set.of(modName),
-            GridResourceAttributeKeys.TAGS, tags,
-            GridResourceAttributeKeys.TOOLTIP, Set.of(tooltip)
-        ));
+        final Map<GridResourceAttributeKey, Supplier<Set<String>>> attributes = Map.of(
+            GridResourceAttributeKeys.MOD_ID, Suppliers.ofInstance(Set.of(modId)),
+            GridResourceAttributeKeys.MOD_NAME, Suppliers.ofInstance(Set.of(modName)),
+            GridResourceAttributeKeys.TAGS, Suppliers.ofInstance(tags),
+            GridResourceAttributeKeys.TOOLTIP, Suppliers.ofInstance(Set.of(tooltip))
+        );
+        return new ChemicalGridResource(chemicalResource, name,
+            k -> attributes.getOrDefault(k, Collections::emptySet).get());
     }
 
     private Set<String> getTags(final Chemical chemical) {
