@@ -8,6 +8,7 @@ repositories {
         url = uri("https://maven.creeperhost.net")
         content {
             includeGroup("com.refinedmods.refinedstorage")
+            includeGroup("com.refinedmods.refinedarchitect")
         }
     }
     maven {
