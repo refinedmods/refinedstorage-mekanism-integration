@@ -3,11 +3,8 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven {
-            url = uri("https://maven.pkg.github.com/refinedmods/refinedarchitect")
-            credentials {
-                username = "anything"
-                password = "\u0067hp_oGjcDFCn8jeTzIj4Ke9pLoEVtpnZMP4VQgaX"
-            }
+            name = "Refined Architect"
+            url = uri("https://maven.creeperhost.net")
         }
         maven {
             name = "Fabric"

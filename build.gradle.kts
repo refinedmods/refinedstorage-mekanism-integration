@@ -5,7 +5,11 @@ plugins {
 
 repositories {
     maven {
+        name = "Refined Storage"
         url = uri("https://maven.creeperhost.net")
+        content {
+            includeGroup("com.refinedmods.refinedstorage")
+        }
     }
     maven {
         name = "Modmaven"
