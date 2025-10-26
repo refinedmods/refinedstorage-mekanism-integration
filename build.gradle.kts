@@ -1,6 +1,6 @@
 plugins {
-    id("refinedarchitect.root")
-    id("refinedarchitect.neoforge")
+    id("com.refinedmods.refinedarchitect.root")
+    id("com.refinedmods.refinedarchitect.neoforge")
 }
 
 repositories {

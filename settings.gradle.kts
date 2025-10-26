@@ -6,8 +6,7 @@ pluginManagement {
             name = "Refined Architect"
             url = uri("https://maven.creeperhost.net")
             content {
-                includeGroup("com.refinedmods.refinedarchitect")
-                includeGroupAndSubgroups("refinedarchitect")
+                includeGroupAndSubgroups("com.refinedmods.refinedarchitect")
             }
         }
         maven {
@@ -17,8 +16,8 @@ pluginManagement {
     }
     val refinedarchitectVersion: String by settings
     plugins {
-        id("refinedarchitect.root").version(refinedarchitectVersion)
-        id("refinedarchitect.neoforge").version(refinedarchitectVersion)
+        id("com.refinedmods.refinedarchitect.root").version(refinedarchitectVersion)
+        id("com.refinedmods.refinedarchitect.neoforge").version(refinedarchitectVersion)
     }
 }
 
