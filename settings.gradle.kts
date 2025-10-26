@@ -5,6 +5,10 @@ pluginManagement {
         maven {
             name = "Refined Architect"
             url = uri("https://maven.creeperhost.net")
+            content {
+                includeGroup("com.refinedmods.refinedarchitect")
+                includeGroupAndSubgroups("refinedarchitect")
+            }
         }
         maven {
             name = "Fabric"
