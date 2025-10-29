@@ -3,6 +3,7 @@ package com.refinedmods.refinedstorage.mekanism.autocrafting;
 import com.refinedmods.refinedstorage.api.autocrafting.task.ExternalPatternSink;
 import com.refinedmods.refinedstorage.api.core.Action;
 import com.refinedmods.refinedstorage.api.resource.ResourceAmount;
+import com.refinedmods.refinedstorage.api.resource.ResourceKey;
 import com.refinedmods.refinedstorage.common.api.autocrafting.PlatformPatternProviderExternalPatternSink;
 import com.refinedmods.refinedstorage.mekanism.ChemicalCapabilityCache;
 import com.refinedmods.refinedstorage.mekanism.ChemicalResource;
@@ -73,5 +74,10 @@ class ChemicalPatternProviderExternalPatternSink implements PlatformPatternProvi
             }
             return true;
         }).orElse(true);
+    }
+
+    @Override
+    public boolean applies(final ResourceKey resource) {
+        return resource instanceof ChemicalResource;
     }
 }
