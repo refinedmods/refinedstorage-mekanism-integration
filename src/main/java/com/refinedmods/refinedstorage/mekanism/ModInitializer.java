@@ -13,6 +13,7 @@ import com.refinedmods.refinedstorage.mekanism.content.Items;
 import com.refinedmods.refinedstorage.mekanism.content.Menus;
 import com.refinedmods.refinedstorage.mekanism.exporter.ChemicalExporterTransferStrategyFactory;
 import com.refinedmods.refinedstorage.mekanism.externalstorage.ChemicalPlatformExternalStorageProviderFactory;
+import com.refinedmods.refinedstorage.mekanism.externalstorage.QioExternalStorageProviderFactory;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridExtractionStrategy;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridInsertionStrategy;
 import com.refinedmods.refinedstorage.mekanism.grid.ChemicalGridResourceRepositoryMapper;
@@ -231,6 +232,9 @@ public final class ModInitializer {
         RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
             new ChemicalPlatformExternalStorageProviderFactory()
         );
+        e.enqueueWork(() -> RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
+            new QioExternalStorageProviderFactory()
+        ));
         RefinedStorageApi.INSTANCE.addPatternProviderExternalPatternSinkFactory(
             new ChemicalPatternProviderExternalPatternSinkFactory()
         );
