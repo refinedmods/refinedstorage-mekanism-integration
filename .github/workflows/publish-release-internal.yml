@@ -1,0 +1,19 @@
+name: Publish release
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+jobs:
+  publish-release:
+    uses: ./.github/workflows/publish-release.yml
+    secrets: inherit
+    with:
+      project-name: 'Refined Storage - Mekanism Integration'
+      announce: true
+      mutation-testing: false
+      sonarqube: true
+      javadoc: false
+      curseforge: true
+      modrinth: true
