@@ -212,6 +212,10 @@ public final class ModInitializer {
     }
 
     private void setup(final FMLCommonSetupEvent e) {
+        e.enqueueWork(ModInitializer::registerExtensions);
+    }
+
+    private static void registerExtensions() {
         RefinedStorageApi.INSTANCE.getResourceTypeRegistry().register(CHEMICAL_ID, ChemicalResourceType.INSTANCE);
         RefinedStorageApi.INSTANCE.getAlternativeResourceFactories().add(ChemicalResourceFactory.INSTANCE);
         RefinedStorageApi.INSTANCE.getStorageTypeRegistry().register(CHEMICAL_ID, ChemicalResourceType.STORAGE_TYPE);
@@ -232,9 +236,9 @@ public final class ModInitializer {
         RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
             new ChemicalPlatformExternalStorageProviderFactory()
         );
-        e.enqueueWork(() -> RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
+        RefinedStorageApi.INSTANCE.addExternalStorageProviderFactory(
             new QioExternalStorageProviderFactory()
-        ));
+        );
         RefinedStorageApi.INSTANCE.addPatternProviderExternalPatternSinkFactory(
             new ChemicalPatternProviderExternalPatternSinkFactory()
         );
