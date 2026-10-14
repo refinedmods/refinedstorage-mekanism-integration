@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+-   You can now use the External Storage on QIO blocks, like the QIO Dashboard, to access the items on its QIO frequency.
+
 ## [1.1.1] - 2025-10-29
 
 ## [1.1.0] - 2025-09-27
